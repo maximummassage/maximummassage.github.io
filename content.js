@@ -89,6 +89,10 @@ window.SITE_CONTENT = {
       "sourceKey": "shvz-sbros-ustalost",
       "displayCoverage": [
         "Шея и плечи"
+      ],
+      "previewTitle": "Шея и плечи",
+      "previewLines": [
+        "Шейно-воротниковая зона: шея и верхняя часть спины."
       ]
     },
     {
@@ -156,6 +160,10 @@ window.SITE_CONTENT = {
       "sourceKey": "spina-shvz",
       "displayCoverage": [
         "Вся спина, шея и плечи"
+      ],
+      "previewTitle": "Вся спина, шея и плечи",
+      "previewLines": [
+        "Включая поясницу и область между лопатками."
       ]
     },
     {
@@ -196,6 +204,10 @@ window.SITE_CONTENT = {
       "sourceKey": "arms-hands-vozvraschennaya-lovkost",
       "displayCoverage": [
         "Руки и кисти"
+      ],
+      "previewTitle": "Руки и кисти",
+      "previewLines": [
+        "Плечи, предплечья, запястья, ладони и пальцы."
       ]
     },
     {
@@ -236,6 +248,10 @@ window.SITE_CONTENT = {
       "sourceKey": "legs-feet-tonus-legkost",
       "displayCoverage": [
         "Ноги и ступни"
+      ],
+      "previewTitle": "Ноги и стопы спереди и сзади",
+      "previewLines": [
+        "Бёдра, голени, икры и стопы."
       ]
     },
     {
@@ -271,6 +287,10 @@ window.SITE_CONTENT = {
       "sourceKey": "abdomen-tsentr-balansa",
       "displayCoverage": [
         "Живот"
+      ],
+      "previewTitle": "Массаж живота",
+      "previewLines": [
+        "Передняя и боковые поверхности живота."
       ]
     },
     {
@@ -311,6 +331,10 @@ window.SITE_CONTENT = {
       "sourceKey": "head-neck-yasnost-komfort",
       "displayCoverage": [
         "Голова и шея"
+      ],
+      "previewTitle": "Голова и шея",
+      "previewLines": [
+        "Волосистая часть головы, затылок, виски и задняя поверхность шеи."
       ]
     },
     {
@@ -351,6 +375,10 @@ window.SITE_CONTENT = {
       "sourceKey": "face-decollete-svezhest-tonus",
       "displayCoverage": [
         "Лицо и декольте"
+      ],
+      "previewTitle": "Лицо, шея и декольте",
+      "previewLines": [
+        "Лицо, передняя поверхность шеи и декольте."
       ]
     },
     {
@@ -391,6 +419,10 @@ window.SITE_CONTENT = {
       "sourceKey": "complex-line/osanka-do-konchikov-paltsev",
       "displayCoverage": [
         "Спина · ШВЗ · плечи · руки · кисти"
+      ],
+      "previewTitle": "Спина, шея и плечи + руки и кисти",
+      "previewLines": [
+        "Вся спина, включая поясницу. Руки — от плеч до кончиков пальцев."
       ]
     },
     {
@@ -431,6 +463,10 @@ window.SITE_CONTENT = {
       "sourceKey": "complex-line/fundament-tela",
       "displayCoverage": [
         "ШВЗ · спина · поясница · ноги · ступни"
+      ],
+      "previewTitle": "Спина, шея и плечи + ноги и стопы",
+      "previewLines": [
+        "Вся спина, включая поясницу. Ноги — спереди и сзади, включая стопы."
       ]
     },
     {
@@ -472,6 +508,10 @@ window.SITE_CONTENT = {
       "displayCoverage": [
         "Поясница · спина · ШВЗ",
         "+ массаж головы"
+      ],
+      "previewTitle": "Спина, шея и плечи + голова",
+      "previewLines": [
+        "Вся спина, включая поясницу, шейно-воротниковая зона и волосистая часть головы."
       ]
     },
     {
@@ -518,6 +558,10 @@ window.SITE_CONTENT = {
       "displayCoverage": [
         "ШВЗ · спина · поясница",
         "+ массаж лица и декольте"
+      ],
+      "previewTitle": "Спина, шея и плечи + лицо и декольте",
+      "previewLines": [
+        "Вся спина и шейно-воротниковая зона. В массаже лица — внимание к области нижней челюсти."
       ]
     },
     {
@@ -558,6 +602,10 @@ window.SITE_CONTENT = {
       "sourceKey": "health-line/express-vozdeystvie",
       "displayCoverage": [
         "Вся задняя поверхность тела"
+      ],
+      "previewTitle": "Задняя поверхность тела",
+      "previewLines": [
+        "Шея, плечи, вся спина, руки и кисти, ноги сзади и стопы."
       ]
     },
     {
@@ -604,6 +652,11 @@ window.SITE_CONTENT = {
       "displayCoverage": [
         "Вся задняя поверхность тела",
         "+ массаж головы"
+      ],
+      "previewTitle": "Задняя поверхность тела + голова",
+      "previewLines": [
+        "Шея, плечи, вся спина, руки и кисти, ноги сзади и стопы.",
+        "Дополнительно — массаж головы."
       ]
     },
     {
@@ -658,6 +711,10 @@ window.SITE_CONTENT = {
       "sourceKey": "health-line/polnoe-vozdeystvie",
       "displayCoverage": [
         "Задняя и передняя поверхности тела"
+      ],
+      "previewTitle": "Тело спереди и сзади",
+      "previewLines": [
+        "Шея, плечи, спина, декольте, руки и кисти, живот, ноги с обеих сторон и стопы."
       ]
     },
     {
@@ -713,6 +770,11 @@ window.SITE_CONTENT = {
       "displayCoverage": [
         "Задняя и передняя поверхности тела",
         "+ массаж головы и лица"
+      ],
+      "previewTitle": "Всё тело + голова и лицо",
+      "previewLines": [
+        "Шея, плечи, спина, декольте, руки и кисти, живот, ноги с обеих сторон и стопы.",
+        "Массаж головы и лица включён в сеанс."
       ]
     },
     {
@@ -753,6 +815,10 @@ window.SITE_CONTENT = {
       "sourceKey": "relax-line/legkoe-pogruzhenie",
       "displayCoverage": [
         "Вся задняя поверхность тела"
+      ],
+      "previewTitle": "Задняя поверхность тела",
+      "previewLines": [
+        "Шея, плечи, вся спина, руки и кисти, ноги сзади и стопы."
       ]
     },
     {
@@ -799,6 +865,11 @@ window.SITE_CONTENT = {
       "displayCoverage": [
         "Вся задняя поверхность тела",
         "+ массаж головы"
+      ],
+      "previewTitle": "Задняя поверхность тела + голова",
+      "previewLines": [
+        "Шея, плечи, вся спина, руки и кисти, ноги сзади и стопы.",
+        "Дополнительно — массаж головы."
       ]
     },
     {
@@ -848,6 +919,10 @@ window.SITE_CONTENT = {
       "sourceKey": "relax-line/polnoe-pogruzhenie",
       "displayCoverage": [
         "Задняя и передняя поверхности тела"
+      ],
+      "previewTitle": "Тело спереди и сзади",
+      "previewLines": [
+        "Шея, плечи, спина, декольте, руки и кисти, живот, ноги с обеих сторон и стопы."
       ]
     },
     {
@@ -920,6 +995,11 @@ window.SITE_CONTENT = {
       "displayCoverage": [
         "Задняя и передняя поверхности тела",
         "+ массаж головы и лица"
+      ],
+      "previewTitle": "Всё тело + голова и лицо",
+      "previewLines": [
+        "Шея, плечи, спина, декольте, руки и кисти, живот, ноги с обеих сторон и стопы.",
+        "Массаж головы и лица включён в сеанс."
       ]
     }
   ],
@@ -937,13 +1017,13 @@ window.SITE_CONTENT = {
         {
           "src": "cabinet-909.jpg",
           "alt": "Изголовье стола, подставка для лица и полотенца",
-          "caption": "Мягкое изголовье",
+          "caption": "Комфортная подушка для лица",
           "focus": "50% 61%"
         },
         {
           "src": "cabinet-953.jpg",
           "alt": "Обратный ракурс кабинета со стороны шторы",
-          "caption": "Другой ракурс кабинета",
+          "caption": "Массажная зона за шторами",
           "focus": "50% 58%"
         },
         {
@@ -1130,5 +1210,15 @@ window.SITE_CONTENT = {
         "source_id": "P29"
       }
     ]
+  },
+  "directions": {
+    "wellness": {
+      "lead": "Более глубокая и интенсивная проработка мышц.",
+      "text": "Уделяем внимание напряжённым участкам. Интенсивность подбираю по вашим ощущениям."
+    },
+    "relax": {
+      "lead": "Мягкое воздействие и плавные приёмы.",
+      "text": "Для общего расслабления, в спокойном темпе и с вниманием к вашим ощущениям."
+    }
   }
 };
