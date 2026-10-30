@@ -83,9 +83,16 @@
   const highlights=/(напряжённые мышцы|без спешки|массаж головы и лица|массаж головы|в спине и плечах|в спине|пояснице|шею и плечи|по ощущениям|усталость|комфортно)/i;
   function paragraph(parent,text,cls=''){const p=node('p',cls);const match=text.match(highlights);if(!match){p.textContent=text;}else{const start=match.index;p.append(document.createTextNode(text.slice(0,start)),node('strong','',match[0]),document.createTextNode(text.slice(start+match[0].length)));}parent.append(p);}
   function sourceBlocks(parent,title,blocks){if(!blocks.length)return;parent.append(node('h5','',title));for(const b of blocks)paragraph(parent,b.text,b.tag==='h3'?'detail-subheading':'');}
-  let group='general',kind='wellness';const list=document.getElementById('service-list');
+  let group='general',kind=null;const list=document.getElementById('service-list');
   const categories={wellness:['Общий оздоровительный массаж тела','от 1 до 2,5 часов'],relax:['Общий расслабляющий массаж тела','от 1 до 2,5 часов'],local:['Массаж отдельных зон','от 20 до 50 минут'],complex:['Комплексные программы','1 час']};
-  function render(){if(motionObserver)for(const c of list.children)motionObserver.unobserve(c);list.replaceChildren();const category=group==='general'?kind:group;document.getElementById('category-title').textContent=categories[category][0];document.getElementById('category-note').textContent=categories[category][1];document.getElementById('body-tabs').hidden=group!=='general';document.querySelectorAll('[data-group]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.group===group)));document.querySelectorAll('[data-kind]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.kind===kind)));
+  function render(){if(motionObserver)for(const c of list.children)motionObserver.unobserve(c);list.replaceChildren();const category=group==='general'?kind:group;
+    document.getElementById('catalog-category').value=group;
+    document.getElementById('general-directions').hidden=group!=='general'||kind!==null;
+    document.getElementById('catalog-quick-kinds').hidden=group!=='general'||kind===null;
+    document.getElementById('programme-results').hidden=!category;
+    document.querySelectorAll('[data-kind]').forEach(b=>b.setAttribute('aria-pressed',String(group==='general'&&b.dataset.kind===kind)));
+    if(!category)return;
+    document.getElementById('category-title').textContent=categories[category][0];document.getElementById('category-note').textContent=categories[category][1];
     const explanation=document.getElementById('direction-description'),direction=content.directions[category];explanation.hidden=!direction;explanation.replaceChildren();if(direction){explanation.dataset.direction=category;explanation.append(node('strong','',direction.lead),document.createTextNode(' '+direction.text));}
     for(const [i,s] of content.services.filter(s=>s.category===category).entries()){
       const card=node('article','service-card');card.dataset.program=s.program;card.dataset.tone=s.category==='local'&&s.name.includes('лица')?'face':s.category;
@@ -93,10 +100,14 @@
       const type=node('p','service-type',s.type),name=node('h4','',s.previewTitle),program=node('p','service-program',`«${s.program}»`),coverage=node('div','service-coverage');
       s.previewLines.forEach((text,index)=>coverage.append(node('p',index?'service-extra':'',text)));
       const bottom=node('div','service-bottom'),cost=node('span','service-price',price.format(s.price)+' ₽'),book=node('button','service-book','Записаться');book.type='button';book.dataset.bookProgramme=s.program;book.dataset.bookDuration=s.duration;book.setAttribute('aria-label',`Записаться на программу «${s.program}», ${price.format(s.price)} рублей`);book.append(icon('arrow'));bottom.append(cost,book);
-      const details=node('details','service-details'),summary=node('summary','','Подробнее о программе'),body=node('div','service-detail-content');if(s.technique)sourceBlocks(body,'Техника и интенсивность',[{tag:'p',text:s.technique}]);sourceBlocks(body,'Что входит в сеанс',s.coverageBlocks);sourceBlocks(body,'Для кого этот формат',s.descriptionBlocks);if(s.session.length){body.append(node('h5','','В программе сеанса'));const steps=node('ol','programme-steps');s.session.forEach(text=>{const step=node('li');paragraph(step,text);steps.append(step);});body.append(steps);}details.append(summary,body);card.append(meta,name,program,coverage,bottom,details);list.append(card);motion(card,'card',i);
+      const details=node('details','service-details'),summary=node('summary','','Подробнее о программе'),body=node('div','service-detail-content');if(s.technique)sourceBlocks(body,'Техника и интенсивность',[{tag:'p',text:s.technique}]);sourceBlocks(body,'Что входит в сеанс',s.coverageBlocks);sourceBlocks(body,'Для кого этот формат',s.descriptionBlocks);if(s.approachBlocks?.length)sourceBlocks(body,'Как проходит сеанс',s.approachBlocks);if(s.session.length){body.append(node('h5','','В программе сеанса'));const steps=node('ol','programme-steps');s.session.forEach(text=>{const step=node('li');paragraph(step,text);steps.append(step);});body.append(steps);}details.append(summary,body);card.append(meta,name,program,coverage,bottom,details);list.append(card);motion(card,'card',i);
     }
   }
-  document.querySelectorAll('[data-group]').forEach(b=>b.addEventListener('click',()=>{group=b.dataset.group;render();}));document.querySelectorAll('[data-kind]').forEach(b=>b.addEventListener('click',()=>{kind=b.dataset.kind;render();}));document.querySelectorAll('[data-category]').forEach(a=>a.addEventListener('click',()=>{group=a.dataset.category;render();}));document.querySelectorAll('[data-link="booking"]').forEach(a=>a.href=content.links.booking);render();
+  function scrollCatalogue(target){target.scrollIntoView({behavior:reduce.matches?'instant':'smooth',block:'start'});}
+  document.getElementById('catalog-category').addEventListener('change',e=>{group=e.target.value;kind=null;render();scrollCatalogue(document.getElementById('catalog-switcher'));});
+  document.querySelectorAll('[data-kind]').forEach(b=>b.addEventListener('click',()=>{group='general';kind=b.dataset.kind;render();document.querySelector('.catalog-quick-kinds [data-kind="'+kind+'"]').focus({preventScroll:true});scrollCatalogue(document.getElementById('programme-results'));}));
+  document.querySelectorAll('[data-category]').forEach(a=>a.addEventListener('click',()=>{group=a.dataset.category;kind=null;render();}));
+  document.querySelectorAll('[data-link="booking"]').forEach(a=>a.href=content.links.booking);render();
   const contacts=document.getElementById('messenger-options');for(const c of content.contacts){if(!c.url)continue;const a=node('a','messenger');a.href=c.url;const img=node('img');img.src=c.logo;img.alt='';img.width=35;img.height=35;a.append(img,node('span','',c.label),icon('arrow'));contacts.append(a);}
   const bookingDialog=document.getElementById('booking-dialog');let lastBooking;
   const choices=document.getElementById('booking-dialog-messengers');for(const c of content.contacts){const link=node('a','booking-choice');link.href=c.url;const image=node('img');image.src=c.logo;image.alt='';image.width=30;image.height=30;link.append(image,node('span','',c.label),icon('arrow'));choices.append(link);}
@@ -114,8 +125,23 @@
   // One quiet reminder while browsing; dismissing it lasts for this visit.
   const welcome=document.getElementById('welcome-offer'),reminder=document.getElementById('welcome-reminder');
   let dismissed=false;try{dismissed=sessionStorage.getItem('maximum-welcome-dismissed')==='1';}catch{}
-  function syncWelcome(){reminder.hidden=dismissed||welcome.getBoundingClientRect().bottom>0;}
+  let reminderWasVisible=false,reminderEntrance=[];
+  function syncWelcome(){
+    const visible=!dismissed&&welcome.getBoundingClientRect().bottom<=0;
+    reminder.hidden=!visible;
+    if(visible&&!reminderWasVisible&&!reduce.matches){
+      for(const a of reminderEntrance)a.cancel();
+      const timing={duration:780,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'};
+      reminderEntrance=[playEntrance(reminder.querySelector('.reminder-discount'),[{transform:'translateX(-75px) scale(.9)',opacity:0},{transform:'translateX(0) scale(1)',opacity:1}],timing)];
+      reminder.querySelector('.reminder-discount').dataset.revealFrom='left';
+      reminder.querySelectorAll('.reminder-copy>small,.reminder-copy>strong,.reminder-cta').forEach((line,i)=>{line.dataset.revealFrom='right';reminderEntrance.push(playEntrance(line,[{transform:'translateX(65px)',opacity:0},{transform:'translateX(0)',opacity:1}],{...timing,delay:100+i*90}));});
+    }
+    reminderWasVisible=visible;
+  }
   document.getElementById('welcome-dismiss').addEventListener('click',()=>{dismissed=true;reminder.hidden=true;try{sessionStorage.setItem('maximum-welcome-dismissed','1');}catch{}});
+  let reminderTouch;
+  reminder.addEventListener('touchstart',e=>{const t=e.changedTouches[0];reminderTouch={x:t.clientX,y:t.clientY};},{passive:true});
+  reminder.addEventListener('touchend',e=>{if(!reminderTouch)return;const t=e.changedTouches[0],dx=t.clientX-reminderTouch.x,dy=t.clientY-reminderTouch.y;reminderTouch=null;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5){document.getElementById('welcome-dismiss').click();}},{passive:true});
   if('IntersectionObserver' in window)new IntersectionObserver(syncWelcome,{threshold:0}).observe(welcome);
   addEventListener('resize',syncWelcome);syncWelcome();
   // Ordinary text links retain a visible underline even on touch screens.
