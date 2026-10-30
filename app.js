@@ -73,7 +73,7 @@
   document.querySelectorAll('.hero-brand,.hero-location,.hero-portrait,.hero-actions').forEach((el,i)=>motion(el,'block',i));
   document.querySelectorAll('.hero-intro p,.section-copy,.review-copy>p:not(.eyebrow),.gift-help,.gift-terms-intro,.film-copy>p:not(.small-label)').forEach((el,i)=>motion(el,'side',i));
   document.querySelectorAll('.category-card').forEach((el,i)=>motion(el,'card',i));
-  document.querySelectorAll('.approach-block,.education,.gift-format,.gift-bottom,.offer-card,.course-terms,.comfort-grid article,.cabinet-film,.first-visit,.route-gallery figure,.reviews-card,.booking-options').forEach((el,i)=>motion(el,'block',i));
+  document.querySelectorAll('.about-status,.approach-block,.education,.gift-format,.gift-bottom,.offer-card,.course-terms,.comfort-grid article,.cabinet-film,.first-visit,.route-gallery figure,.reviews-card,.booking-options').forEach((el,i)=>motion(el,'block',i));
   reduce.addEventListener('change',e=>{if(e.matches)for(const a of entranceAnimations)a.finish();});
 
   function fitTagline(){const heading=document.getElementById('brand-title'),line=document.querySelector('.brand-tagline'),span=line?.firstElementChild;if(!heading||!span)return;span.style.letterSpacing='0px';span.style.marginRight='0';const range=document.createRange();range.selectNodeContents(heading);const width=Math.min(range.getBoundingClientRect().width,heading.getBoundingClientRect().width);line.style.width=width+'px';const natural=span.getBoundingClientRect().width;const spacing=Math.max(0,(width-natural)/(Array.from(span.textContent.trim()).length-1));span.style.letterSpacing=spacing+'px';span.style.marginRight=-spacing+'px';}
@@ -105,7 +105,7 @@
       const top=node('span','programme-row-top'),time=node('span','programme-row-time'),cost=node('span','programme-row-price',price.format(s.price)+' ₽');
       time.append(icon('clock'),node('span','',s.duration));top.append(time,cost);
       const title=node('strong','programme-row-title',`«${s.program}»`);
-      const subtitle=node('span','programme-row-subtitle',s.category==='local'?s.name:s.previewTitle);
+      const subtitle=node('strong','programme-row-subtitle',s.previewTitle);
       const hint=node('span','programme-row-hint'),hintOpen=node('span','hint-open','Развернуть описание и записаться'),hintClose=node('span','hint-close','Свернуть описание'),arrow=node('span','programme-row-arrow');arrow.append(icon('chevron'));hint.append(hintOpen,hintClose,arrow);
       summary.append(top,title,subtitle,hint);
       const expanded=node('div','programme-expanded');expanded.id='programme-'+s.sourceKey.replace(/[^a-z0-9-]/g,'-');summary.setAttribute('aria-controls',expanded.id);

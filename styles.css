@@ -513,3 +513,20 @@ summary{min-height:48px;border-radius:10px;background:linear-gradient(120deg,#ff
  .reminder-cta{font-size:15px;padding:8px 9px;gap:6px}.reminder-cta svg{width:22px;height:22px}
 }
 @media(prefers-reduced-motion:reduce){.programme-summary .programme-row-arrow{animation:none!important}}
+
+/* The service itself is a clear second heading below the coloured programme name. */
+.programme-row-subtitle{display:block;font-size:22px;font-weight:800;line-height:1.45;letter-spacing:-.02em;color:#283a4d;margin-top:3px;overflow-wrap:break-word}
+.programme-row-title{margin-bottom:10px}
+@media(min-width:801px){.programme-row-subtitle{font-size:21px}.programme-row-title{margin-bottom:0}}
+/* Glass surrounds every prominent discount, including courses and referral offers. */
+.offer-card .offer-discount{display:inline-flex;align-items:baseline;justify-content:center;flex:none;width:fit-content;min-width:157px;padding:13px 20px 16px;border:1px solid #ffffffe0;border-radius:21px;background:linear-gradient(140deg,#ffffff80,#ffffff16 60%,#d9e4f02b);box-shadow:inset 0 1px #fff,inset 0 -1px #76889c26,0 8px 18px #213b551a;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);text-shadow:0 1px 0 #ffffff90}
+.offer-card .offer-discount small{align-self:baseline;margin-left:.025em}
+#offers .offer-card:not(.offer-course) .offer-discount{color:#b82e3b}
+.offer-top{gap:18px;align-items:center}
+/* The user's statement is separate from the factual introduction. */
+.about-status{position:relative;margin:27px 0 30px;padding:24px 27px 24px 29px;border:1px solid #ffffffa8;border-left:3px solid #a5b3c3;border-radius:6px 22px 22px 6px;background:linear-gradient(130deg,#ffffff8a,#e5eaf045);box-shadow:inset 0 1px #fff,0 12px 27px #2539500d;color:#38495c;max-width:680px}
+.about-status p{font:500 18px/1.8 Manrope,sans-serif;letter-spacing:-.01em;color:inherit;margin:0}
+.about-status p+p{margin-top:12px}
+#about-me{scroll-margin-top:110px}
+@media(max-width:800px){.programme-row-subtitle{font-size:21px}.offer-card .offer-discount{font-size:72px;min-width:140px;padding:12px 17px 14px;border-radius:19px}.about-status{padding:22px 23px;margin:24px 0 28px}.about-status p{font-size:17px;line-height:1.8}}
+@media(max-width:350px){.programme-row-subtitle{font-size:19px;line-height:1.5}.offer-card .offer-discount{font-size:64px;min-width:125px;padding:11px 14px 13px;border-radius:17px}.offer-top{gap:12px}.about-status{padding:20px 18px;margin:22px 0 25px}.about-status p{font-size:16px}}
