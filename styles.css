@@ -548,3 +548,12 @@ summary{min-height:48px;border-radius:10px;background:linear-gradient(120deg,#ff
 @media(prefers-reduced-motion:no-preference){.about-status.quote-entered:after{animation:quote-glass-reflection 10s ease-in-out infinite;animation-play-state:paused}.about-status.quote-entered.quote-in-view:after{animation-play-state:running}html.quote-page-hidden .about-status:after{animation-play-state:paused!important}}
 @media(max-width:800px){.about-status{padding:24px 24px 23px;border-radius:26px}.about-status .status-quote-text p{font-size:18px;line-height:1.8}.status-quote-mark{font-size:80px}.status-author-role{font-size:13px}}
 @media(max-width:350px){.about-status{padding:23px 20px 22px;border-radius:24px}.about-status .status-quote-text p{font-size:17px;line-height:1.8}.status-signature{gap:11px}.status-author-mark{flex-basis:43px;width:43px;height:48px}.status-author-name{font-size:17px}.status-author-role{font-size:12px}}
+
+/* Larger massage labels sit in their own silver glass panel. */
+.programme-row-subtitle{display:block;width:100%;max-width:100%;min-width:0;box-sizing:border-box;font-size:27px;font-weight:800;line-height:1.4;letter-spacing:-.025em;color:#27394b;padding:14px 17px;margin-top:4px;border:1px solid #ffffffdd;border-radius:17px;background:linear-gradient(135deg,#ffffffbc,#eef3f866 55%,#ffffff70);box-shadow:inset 0 1px #fff,inset 0 -1px #7c90a12b,0 5px 13px #263b5014;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);overflow-wrap:break-word}
+.programme-row-title{font-size:26px}
+.status-author-mark{font-family:Manrope,sans-serif;font-style:normal;font-size:28px;font-weight:500}
+/* The separate special offers section uses the brand's graphite and silver. */
+#offers .offer-card .offer-top .offer-discount{color:#35485b}
+@media(max-width:800px){.programme-row-subtitle{font-size:26px;padding:13px 15px;border-radius:16px}.programme-row-title{font-size:25px}}
+@media(max-width:350px){.programme-row-subtitle{font-size:23px;padding:12px 12px;border-radius:15px;line-height:1.45}.programme-row-title{font-size:23px}.status-author-mark{font-size:26px}}
