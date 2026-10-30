@@ -595,3 +595,61 @@ summary{min-height:48px;border-radius:10px;background:linear-gradient(120deg,#ff
  .booking-with-photo:before{background:linear-gradient(180deg,#101d2a80,#142331c2 55%,#172630ed)}
 }
 @media(prefers-reduced-motion:reduce){.photo-interlude{scroll-behavior:auto;scroll-snap-type:none}}
+
+/* Photography belongs to the section surface, never to a separate gallery strip. */
+.comfort-scene{position:relative;isolation:isolate;overflow:hidden;padding:48px;margin-bottom:36px;border-radius:38px 38px 22px 22px;background:#283744;box-shadow:inset 0 1px #ffffff70,0 20px 38px #24364a25}
+.scene-photo{position:absolute;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+.scene-photo img{display:block;width:100%;height:100%;object-fit:cover}
+.comfort-scene .scene-photo img{object-position:58% 33%}
+.comfort-scene:before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(110deg,#152330c7 3%,#18293670 52%,#14253438),linear-gradient(0deg,#172735b3,transparent 62%)}
+.comfort-scene>.eyebrow,.comfort-scene>.section-head h2,.comfort-scene>.section-head h2 span{color:#f1f5fa}
+.comfort-scene>.section-head{padding-right:150px;margin-bottom:40px;min-height:180px}
+.comfort-scene .approach-grid{position:relative;z-index:1;gap:20px}
+.comfort-scene .approach-block{border:1px solid #ffffffc9;border-radius:27px 18px 31px 20px;background:linear-gradient(140deg,#f5f8fce8,#e5ebf2d9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:inset 0 1px #fff,0 14px 28px #091c3338}
+.comfort-scene .approach-block:nth-child(2){border-radius:18px 34px 20px 30px}
+.comfort-scene .approach-block .sticker{width:76px;height:76px;margin-bottom:27px;border-radius:23px;box-shadow:inset 0 2px #fff,0 8px 0 #71849a16,0 14px 22px #32465d24;transform:rotate(-6deg)}
+.comfort-scene .approach-block:nth-child(2) .sticker{transform:rotate(5deg)}
+.comfort-scene .approach-block .sticker img{width:47px;height:47px}
+.services-photo-scene{position:relative;isolation:isolate;overflow:hidden;background-color:#263544}
+.services-photo-scene>.scene-photo{bottom:auto;height:min(850px,100%)}
+.services-photo-scene>.scene-photo img{object-position:50% 64%}
+.services-photo-scene:before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,#142131e8,#192c3ca3 58%,#14263873),linear-gradient(180deg,#12243314,#1d2b3b 850px);opacity:1}
+.services-photo-scene>.wrap{position:relative;z-index:1}
+.services-photo-scene .section-head{min-height:280px;align-items:end}
+.services-photo-scene .section-copy{color:#e9eff6}
+.scene-accent{position:absolute;z-index:0;right:40px;top:38px;display:grid;place-items:center;width:124px;height:124px;border:1px solid #f1f7ffd4;border-radius:35px;background:linear-gradient(130deg,#f3f8ff5c,#d6e8fc0d);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 2px #fff9,inset 0 -3px #152b4629,0 18px 28px #0e203c38;transform:rotate(8deg);color:#eff6ff;pointer-events:none}
+.scene-accent svg{width:70px;height:70px;fill:none;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 3px 2px #1d354e3d)}
+#gift>.wrap{position:relative}#gift>.wrap>.scene-accent{top:15px;right:12px;width:140px;height:140px;border-radius:39px;transform:rotate(-9deg)}
+#gift>.wrap>.section-head{padding-right:155px}
+/* A short sticky tail lets the next rounded surface rise over the previous one. */
+.lift-shell{position:relative;display:flow-root;z-index:0}
+.lift-shell:after{content:'';display:block;height:var(--lift-depth,320px)}
+.lift-underlay{position:sticky;top:var(--lift-top,0px)}
+.lift-cover{position:relative;z-index:2;margin-top:calc(-1 * var(--lift-depth,320px));border-radius:44px 44px 0 0;box-shadow:0 -15px 35px #142b4724;background-color:#b9c1cb}
+.lift-cover.section-graphite{background-color:#303943}
+.lift-shell:has(:focus-visible) .lift-underlay{position:relative;top:0}
+@keyframes scene-line-draw{from{stroke-dasharray:150;stroke-dashoffset:150;opacity:.2}to{stroke-dasharray:150;stroke-dashoffset:0;opacity:1}}
+@media(prefers-reduced-motion:no-preference){.scene-accent.feature-entered svg{animation:scene-line-draw 1.4s ease-out both}}
+@media(max-width:800px){
+ .comfort-scene{padding:30px 22px;margin-inline:-8px;border-radius:31px 31px 19px 19px}
+ .comfort-scene>.section-head{padding-right:0;min-height:220px;margin-bottom:24px}
+ .comfort-scene>.section-head h2{position:relative;z-index:1;max-width:240px;text-shadow:0 2px 14px #14273a66}
+ .comfort-scene>.eyebrow{position:relative;z-index:1;max-width:210px}
+ .comfort-scene .scene-photo img{object-position:56% top}
+ .comfort-scene:before{background:linear-gradient(110deg,#142534c7,#1c354877),linear-gradient(0deg,#172735c9,transparent 70%)}
+ .comfort-scene .approach-block{padding:26px 23px}
+ .comfort-scene .approach-block .sticker{width:68px;height:68px;margin-bottom:24px;border-radius:21px}
+ .comfort-scene .approach-block .sticker img{width:43px;height:43px}
+ .services-photo-scene>.scene-photo{height:650px}
+ .services-photo-scene>.scene-photo img{object-position:65% 66%}
+ .services-photo-scene:before{background:linear-gradient(90deg,#142131d4,#182c3c80),linear-gradient(180deg,#192b3b15,#1d2b3b 650px)}
+ .services-photo-scene .section-head{min-height:350px}
+ .scene-accent{right:17px;top:52px;width:83px;height:83px;border-radius:25px;color:#f5f9ff}
+ .scene-accent svg{width:47px;height:47px}
+ #gift>.wrap>.scene-accent{top:29px;right:0;width:90px;height:90px;border-radius:27px}
+ #gift>.wrap>.section-head{padding-right:0}
+ #gift>.wrap>.section-head h2{position:relative;z-index:1;max-width:230px}
+ .lift-cover{border-radius:31px 31px 0 0;box-shadow:0 -10px 25px #142b4729}
+}
+@media(max-width:350px){.comfort-scene{padding:27px 17px}.comfort-scene>.section-head h2{max-width:190px}.comfort-scene .approach-block{padding:25px 19px}.scene-accent{right:10px;top:60px;width:70px;height:70px;border-radius:22px}.scene-accent svg{width:40px;height:40px}#gift>.wrap>.scene-accent{width:76px;height:76px;top:25px}#gift>.wrap>.section-head h2{max-width:205px}}
+@media(prefers-reduced-motion:reduce){.lift-underlay{position:relative;top:0}.lift-shell:after{height:0}.lift-cover{margin-top:0}.scroll-photo{clip-path:none!important}.scroll-photo img{transform:none!important}}
