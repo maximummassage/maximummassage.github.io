@@ -106,7 +106,7 @@
       time.append(icon('clock'),node('span','',s.duration));top.append(time,cost);
       const title=node('strong','programme-row-title',`«${s.program}»`);
       const subtitle=node('span','programme-row-subtitle',s.category==='local'?s.name:s.previewTitle);
-      const hint=node('span','programme-row-hint'),hintOpen=node('span','hint-open','Описание и запись'),hintClose=node('span','hint-close','Свернуть программу'),arrow=node('span','programme-row-arrow');arrow.append(icon('chevron'));hint.append(hintOpen,hintClose,arrow);
+      const hint=node('span','programme-row-hint'),hintOpen=node('span','hint-open','Развернуть описание и записаться'),hintClose=node('span','hint-close','Свернуть описание'),arrow=node('span','programme-row-arrow');arrow.append(icon('chevron'));hint.append(hintOpen,hintClose,arrow);
       summary.append(top,title,subtitle,hint);
       const expanded=node('div','programme-expanded');expanded.id='programme-'+s.sourceKey.replace(/[^a-z0-9-]/g,'-');summary.setAttribute('aria-controls',expanded.id);
       const coverage=node('div','service-coverage');s.previewLines.forEach((text,index)=>coverage.append(node('p',index?'service-extra':'',text)));
@@ -158,6 +158,7 @@
       for(const a of reminderEntrance)a.cancel();
       const timing={duration:780,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'};
       reminderEntrance=[playEntrance(reminder.querySelector('.reminder-discount'),[{transform:'translateX(-75px) scale(.9)',opacity:0},{transform:'translateX(0) scale(1)',opacity:1}],timing)];
+      const ticket=reminder.querySelector('.offer-sticker-mark');if(ticket)reminderEntrance.push(playEntrance(ticket,[{transform:'translateY(8px) scale(.72)',opacity:0},{transform:'translateY(0) scale(1)',opacity:1}],{...timing,duration:600,delay:260}));
       reminder.querySelector('.reminder-discount').dataset.revealFrom='left';
       reminder.querySelectorAll('.reminder-copy>small,.reminder-copy>strong,.reminder-cta').forEach((line,i)=>{line.dataset.revealFrom='right';reminderEntrance.push(playEntrance(line,[{transform:'translateX(65px)',opacity:0},{transform:'translateX(0)',opacity:1}],{...timing,delay:100+i*90}));});
     }
@@ -185,9 +186,9 @@
   // Keep cues active only on screen; rendered programme buttons are tracked too.
   if('IntersectionObserver' in window){
     const cues=new IntersectionObserver(entries=>{for(const e of entries)e.target.classList.toggle('arrow-awake',e.isIntersecting);},{rootMargin:'20px'});
-    function trackCue(el){if(!el.matches?.('a[href],button')||!el.querySelector('use[href="#i-arrow"]')||el.dataset.cueTracked)return;el.dataset.cueTracked='1';cues.observe(el);}
-    document.querySelectorAll('a[href],button').forEach(trackCue);
-    const changes=new MutationObserver(records=>{for(const record of records)for(const item of record.addedNodes){if(item.nodeType!==1)continue;trackCue(item);item.querySelectorAll('a[href],button').forEach(trackCue);}});
+    function trackCue(el){if(!el.matches?.('a[href],button,summary')||!el.querySelector('use[href="#i-arrow"],use[href="#i-chevron"]')||el.dataset.cueTracked)return;el.dataset.cueTracked='1';cues.observe(el);}
+    document.querySelectorAll('a[href],button,summary').forEach(trackCue);
+    const changes=new MutationObserver(records=>{for(const record of records)for(const item of record.addedNodes){if(item.nodeType!==1)continue;trackCue(item);item.querySelectorAll('a[href],button,summary').forEach(trackCue);}});
     for(const container of [list,rail])changes.observe(container,{childList:true,subtree:true});
     document.documentElement.classList.add('js-cues');
   }

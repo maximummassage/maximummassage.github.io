@@ -458,3 +458,58 @@ summary{min-height:48px;border-radius:10px;background:linear-gradient(120deg,#ff
  .programme-expanded{padding:0 15px 22px}.programme-row-subtitle{font-size:15px}
 }
 @media(prefers-reduced-motion:reduce){.programme-row-arrow svg,.programme-accordion,.catalog-group-tabs button{transition:none}.welcome-offer::before,.welcome-reminder::before{animation:none;transform:none;opacity:.65}}
+
+/* Programme names retain the established category colours. */
+.programme-row-title{display:inline-block;justify-self:start;width:fit-content;max-width:100%;padding:9px 13px;border-radius:12px;background:linear-gradient(145deg,#ffffff17,transparent 72%),var(--tone);border:1px solid #ffffff63;color:#fff;box-shadow:inset 0 1px #ffffff70,inset 0 -1px #10203020,0 5px 12px #21344920;text-shadow:0 1px 2px #152a3a19;letter-spacing:-.025em;box-sizing:border-box}
+.programme-accordion[data-tone=face] .programme-row-title{color:#302408;text-shadow:none}
+.programme-row-hint{font-size:16px;line-height:1.5;gap:12px}
+.programme-row-hint>.hint-open,.programme-row-hint>.hint-close{max-width:260px}
+.programme-row-arrow{width:39px;height:39px;border-color:#fff;position:relative}
+@keyframes programme-invite{0%,65%,100%{transform:translateY(0);box-shadow:inset 0 1px #fff,0 3px 0 #61758b33,0 0 0 0 #668cb72e}78%{transform:translateY(3px);box-shadow:inset 0 1px #fff,0 3px 0 #61758b33,0 0 0 6px #668cb700}90%{transform:translateY(-1px);box-shadow:inset 0 1px #fff,0 3px 0 #61758b33,0 0 0 0 #668cb700}}
+.programme-summary.arrow-awake .programme-row-arrow{animation:programme-invite 3.8s ease-in-out infinite}
+.programme-accordion[open] .programme-row-arrow{animation:none}
+.page-inactive .programme-row-arrow{animation-play-state:paused}
+.programme-summary:active .programme-row-arrow{animation:none;transform:translateY(3px);box-shadow:inset 0 3px 6px #314b6938,0 1px 2px #314b691c}
+/* A single silver ticket, integrated with the percentage rather than extra decorations. */
+.discount-chip{position:relative;overflow:visible}
+.offer-sticker-mark{position:absolute;right:-11px;top:-13px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;border:1px solid #fff;border-radius:12px;background:linear-gradient(140deg,#fff,#c1d0df);box-shadow:inset 0 1px #fff,0 4px 0 #571d2d22,0 8px 16px #42162c30;rotate:12deg;transform-origin:center;color:#38485a}
+.offer-sticker-mark img{display:block;width:24px;height:24px;opacity:.79;filter:none}
+.welcome-glass-content>.welcome-discount.discount-chip>.offer-sticker-mark{display:flex;align-items:center;justify-content:center;font-size:initial;margin:0;align-self:auto;vertical-align:initial;line-height:normal}
+.welcome-glass-content>.welcome-discount.discount-chip{margin-top:8px}
+.welcome-reminder{width:min(630px,calc(100% - 16px));border-radius:23px;box-shadow:inset 0 1px #ffffffa6,0 17px 38px #48202a4a}
+.welcome-reminder>a{grid-template-columns:146px minmax(0,1fr);gap:22px;padding:25px 43px 24px 22px}
+.welcome-reminder .reminder-discount.discount-chip{font-size:80px;min-width:0;width:100%;min-height:118px;padding:14px 12px;border-radius:22px}
+.welcome-reminder .reminder-discount>.offer-sticker-mark{width:36px;height:36px;right:-10px;top:-12px;letter-spacing:0;font-size:initial}
+.welcome-reminder .reminder-copy>small{font-size:17px;line-height:1.45;color:#fff7f5}
+.welcome-reminder .reminder-copy>strong{font-size:23px;line-height:1.4;margin:3px 0 13px}
+.reminder-cta{font-size:18px;padding:10px 13px;border-radius:12px;gap:10px}
+.reminder-cta svg{width:26px;height:26px}
+.welcome-reminder>button{top:3px;right:3px;background:#ffffff10}
+/* Subtle depth across the existing sections; no new factual copy or decorative clutter. */
+.offer-card,.gift-format,.education,.first-visit{box-shadow:inset 0 1px #ffffff73,0 18px 40px #182d4717;border:1px solid #ffffff56}
+.review-platform{box-shadow:inset 0 1px #ffffffad,inset 0 -1px #8899ad20,0 8px 18px #203c5915}
+.comfort-grid article{border:1px solid #ffffff58;box-shadow:inset 0 1px #fff7,0 8px 18px #23394d0c}
+.photo-open{box-shadow:inset 0 1px #fff5,0 13px 27px #1c2e4830}
+@media(hover:hover){.offer-card:hover,.gift-format:hover{box-shadow:inset 0 1px #ffffff99,0 23px 43px #182d4728}.review-platform:hover{box-shadow:inset 0 1px #fff,0 13px 25px #203c5926}}
+@media(min-width:801px){.programme-summary{grid-template-columns:125px minmax(0,1fr) 225px}.programme-row-hint{font-size:14px;justify-content:space-between}.programme-row-title{font-size:24px}}
+@media(max-width:800px){
+ .programme-row-title{font-size:23px;padding:9px 12px}.programme-row-hint{font-size:15px;gap:10px}
+ .programme-row-hint>.hint-open{max-width:230px}
+ .welcome-reminder>a{grid-template-columns:121px minmax(0,1fr);gap:14px;padding:22px 32px 21px 13px}
+ .welcome-reminder .reminder-discount.discount-chip{font-size:66px;min-height:106px;padding:14px 9px;border-radius:20px}
+ .welcome-reminder .reminder-copy>small{font-size:16px}.welcome-reminder .reminder-copy>strong{font-size:20px;margin-bottom:12px}
+ .welcome-reminder .reminder-discount>.offer-sticker-mark{width:32px;height:32px;border-radius:10px;top:-12px;right:-9px}
+ .welcome-reminder .offer-sticker-mark img{width:21px;height:21px}
+ .reminder-cta{font-size:17px;gap:8px;padding:9px 10px}.reminder-cta svg{width:24px;height:24px}
+}
+@media(max-width:350px){
+ .programme-row-title{font-size:21px;padding:8px 10px}.programme-row-hint{font-size:14px;gap:9px}
+ .programme-row-arrow{width:35px;height:35px}
+ .welcome-reminder>a{grid-template-columns:98px minmax(0,1fr);gap:12px;padding:20px 26px 19px 11px}
+ .welcome-reminder .reminder-discount.discount-chip{font-size:55px;min-height:95px;padding:13px 7px;border-radius:18px}
+ .welcome-reminder .reminder-copy>small{font-size:14px}.welcome-reminder .reminder-copy>strong{font-size:17px;margin-bottom:11px}
+ .welcome-reminder .reminder-discount>.offer-sticker-mark{width:29px;height:29px;top:-10px;right:-7px}
+ .welcome-reminder .offer-sticker-mark img{width:19px;height:19px}
+ .reminder-cta{font-size:15px;padding:8px 9px;gap:6px}.reminder-cta svg{width:22px;height:22px}
+}
+@media(prefers-reduced-motion:reduce){.programme-summary .programme-row-arrow{animation:none!important}}
