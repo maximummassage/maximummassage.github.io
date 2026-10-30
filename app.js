@@ -28,6 +28,19 @@
         ],{...timing,duration:540,delay:delay+Math.min(i*18,420)}));
         continue;
       }
+      if(kind==='quote'){
+        el.classList.add('quote-entered');
+        playEntrance(el,[
+          {transform:'perspective(1100px) translate3d(-28px,35px,-60px) rotateY(-8deg) rotateX(5deg) scale(.97)',opacity:0},
+          {transform:'perspective(1100px) translate3d(0,-2px,0) rotateY(.6deg) rotateX(0deg) scale(1)',opacity:1,offset:.76},
+          {transform:'perspective(1100px) translate3d(0,0,0) rotateY(0deg) rotateX(0deg) scale(1)',opacity:1}
+        ],{...timing,duration:1250,delay:0});
+        el.querySelectorAll('.status-quote-text p,.status-signature').forEach((line,i)=>playEntrance(line,[
+          {transform:`translateX(${i%2?18:-18}px)`,opacity:0},
+          {transform:'translateX(0)',opacity:1}
+        ],{...timing,duration:800,delay:180+i*130}));
+        continue;
+      }
       let frames;
       if(kind==='side'){
         el.dataset.revealFrom=direction<0?'left':'right';
@@ -73,7 +86,16 @@
   document.querySelectorAll('.hero-brand,.hero-location,.hero-portrait,.hero-actions').forEach((el,i)=>motion(el,'block',i));
   document.querySelectorAll('.hero-intro p,.section-copy,.review-copy>p:not(.eyebrow),.gift-help,.gift-terms-intro,.film-copy>p:not(.small-label)').forEach((el,i)=>motion(el,'side',i));
   document.querySelectorAll('.category-card').forEach((el,i)=>motion(el,'card',i));
-  document.querySelectorAll('.about-status,.approach-block,.education,.gift-format,.gift-bottom,.offer-card,.course-terms,.comfort-grid article,.cabinet-film,.first-visit,.route-gallery figure,.reviews-card,.booking-options').forEach((el,i)=>motion(el,'block',i));
+  document.querySelectorAll('.approach-block,.education,.gift-format,.gift-bottom,.offer-card,.course-terms,.comfort-grid article,.cabinet-film,.first-visit,.route-gallery figure,.reviews-card,.booking-options').forEach((el,i)=>motion(el,'block',i));
+  const personalQuote=document.querySelector('.about-status');
+  if(personalQuote){
+    motion(personalQuote,'quote');
+    if('IntersectionObserver' in window)new IntersectionObserver(entries=>{
+      for(const e of entries)e.target.classList.toggle('quote-in-view',e.isIntersecting);
+    },{threshold:.12}).observe(personalQuote);
+    const syncQuoteVisibility=()=>document.documentElement.classList.toggle('quote-page-hidden',document.hidden);
+    document.addEventListener('visibilitychange',syncQuoteVisibility);syncQuoteVisibility();
+  }
   reduce.addEventListener('change',e=>{if(e.matches)for(const a of entranceAnimations)a.finish();});
 
   function fitTagline(){const heading=document.getElementById('brand-title'),line=document.querySelector('.brand-tagline'),span=line?.firstElementChild;if(!heading||!span)return;span.style.letterSpacing='0px';span.style.marginRight='0';const range=document.createRange();range.selectNodeContents(heading);const width=Math.min(range.getBoundingClientRect().width,heading.getBoundingClientRect().width);line.style.width=width+'px';const natural=span.getBoundingClientRect().width;const spacing=Math.max(0,(width-natural)/(Array.from(span.textContent.trim()).length-1));span.style.letterSpacing=spacing+'px';span.style.marginRight=-spacing+'px';}
@@ -106,7 +128,7 @@
       time.append(icon('clock'),node('span','',s.duration));top.append(time,cost);
       const title=node('strong','programme-row-title',`«${s.program}»`);
       const subtitle=node('strong','programme-row-subtitle',s.previewTitle);
-      const hint=node('span','programme-row-hint'),hintOpen=node('span','hint-open','Развернуть описание и записаться'),hintClose=node('span','hint-close','Свернуть описание'),arrow=node('span','programme-row-arrow');arrow.append(icon('chevron'));hint.append(hintOpen,hintClose,arrow);
+      const hint=node('span','programme-row-hint'),hintOpen=node('span','hint-open','Узнать больше о сеансе'),hintClose=node('span','hint-close','Свернуть описание'),arrow=node('span','programme-row-arrow');arrow.append(icon('chevron'));hint.append(hintOpen,hintClose,arrow);
       summary.append(top,title,subtitle,hint);
       const expanded=node('div','programme-expanded');expanded.id='programme-'+s.sourceKey.replace(/[^a-z0-9-]/g,'-');summary.setAttribute('aria-controls',expanded.id);
       const coverage=node('div','service-coverage');s.previewLines.forEach((text,index)=>coverage.append(node('p',index?'service-extra':'',text)));
