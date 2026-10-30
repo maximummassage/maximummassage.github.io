@@ -66,6 +66,15 @@
   // Ordinary text links retain a visible underline even on touch screens.
   document.querySelectorAll('a[href]').forEach(a=>{if(!a.children.length)a.classList.add('text-tap');});
 
+
+  // Every actual link has a visible transition marker. Keep address text fitting.
+  document.querySelectorAll('a[href]').forEach((a,i)=>{
+    if(a.classList.contains('skip-link'))return;
+    if(!a.querySelector('use[href="#i-arrow"]')){const arrow=icon('arrow');arrow.classList.add('link-marker');a.append(arrow);a.classList.add('has-link-marker');}
+    a.style.setProperty('--impulse-delay',(-i*.29%3.6)+'s');
+  });
+  document.fonts.ready.then(fitHero);
+
   const progress=document.querySelector('.reading-progress');let scheduled=false;function updateProgress(){const height=document.documentElement.scrollHeight-innerHeight;progress.style.transform=`scaleX(${height>0?Math.min(1,Math.max(0,scrollY/height)):0})`;scheduled=false;}addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(updateProgress);}},{passive:true});addEventListener('resize',updateProgress);updateProgress();
   if('IntersectionObserver' in window){const navObserver=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){const id=e.target.id==='catalog'?'services':e.target.id;document.querySelectorAll('.bottom-nav a').forEach(a=>{const active=a.getAttribute('href')==='#'+id;a.classList.toggle('is-active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});}},{rootMargin:'-20% 0px -65% 0px'});document.querySelectorAll('#services,#catalog,#offers,#reviews,#gift,#cabinet,#address,#booking').forEach(e=>navObserver.observe(e));}
 })();
