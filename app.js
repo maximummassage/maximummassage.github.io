@@ -75,6 +75,24 @@
   });
   document.fonts.ready.then(fitHero);
 
+
+  // Keep cues active only on screen; rendered programme buttons are tracked too.
+  if('IntersectionObserver' in window){
+    const cues=new IntersectionObserver(entries=>{for(const e of entries)e.target.classList.toggle('arrow-awake',e.isIntersecting);},{rootMargin:'20px'});
+    function trackCue(el){if(!el.matches?.('a[href],button')||!el.querySelector('use[href="#i-arrow"]')||el.dataset.cueTracked)return;el.dataset.cueTracked='1';cues.observe(el);}
+    document.querySelectorAll('a[href],button').forEach(trackCue);
+    const changes=new MutationObserver(records=>{for(const record of records)for(const item of record.addedNodes){if(item.nodeType!==1)continue;trackCue(item);item.querySelectorAll('a[href],button').forEach(trackCue);}});
+    for(const container of [list,rail])changes.observe(container,{childList:true,subtree:true});
+    document.documentElement.classList.add('js-cues');
+  }
+  function pauseBackgroundCues(){document.documentElement.classList.toggle('page-inactive',document.hidden);}
+  document.addEventListener('visibilitychange',pauseBackgroundCues);pauseBackgroundCues();
+  // A small specular reflection follows the pointer inside the glass, not the text.
+  if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduce.matches){
+    const glass=document.querySelector('.welcome-glass-content');let pending=false,lastPoint;
+    glass.addEventListener('pointermove',e=>{lastPoint={x:e.clientX,y:e.clientY};if(pending)return;pending=true;requestAnimationFrame(()=>{const rect=glass.getBoundingClientRect();glass.style.setProperty('--light-x',(lastPoint.x-rect.left)+'px');glass.style.setProperty('--light-y',(lastPoint.y-rect.top)+'px');pending=false;});});
+  }
+
   const progress=document.querySelector('.reading-progress');let scheduled=false;function updateProgress(){const height=document.documentElement.scrollHeight-innerHeight;progress.style.transform=`scaleX(${height>0?Math.min(1,Math.max(0,scrollY/height)):0})`;scheduled=false;}addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(updateProgress);}},{passive:true});addEventListener('resize',updateProgress);updateProgress();
   if('IntersectionObserver' in window){const navObserver=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){const id=e.target.id==='catalog'?'services':e.target.id;document.querySelectorAll('.bottom-nav a').forEach(a=>{const active=a.getAttribute('href')==='#'+id;a.classList.toggle('is-active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});}},{rootMargin:'-20% 0px -65% 0px'});document.querySelectorAll('#services,#catalog,#offers,#reviews,#gift,#cabinet,#address,#booking').forEach(e=>navObserver.observe(e));}
 })();

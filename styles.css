@@ -231,3 +231,61 @@ summary{min-height:48px;border-radius:10px;background:linear-gradient(120deg,#ff
 .gift-terms>.certificate-order{font-size:19px;min-height:62px;gap:35px}
 @media(max-width:800px){.gift-terms{padding:28px 23px}.gift-terms h3{font-size:32px}.gift-terms-grid{grid-template-columns:1fr;gap:14px}.gift-terms-grid>div{padding:23px}.gift-terms>.certificate-order{width:100%;font-size:18px;gap:18px}.gift-terms-intro,.gift-terms-grid p{font-size:17px}}
 @media(max-width:350px){.gift-terms{padding:25px 18px}.gift-terms>.certificate-order{font-size:16px;padding:14px}.gift-terms-grid>div{padding:21px 18px}}
+
+/* Rich red behind a separate, clear optical layer. */
+.welcome-offer{width:min(100%,760px);padding:13px;border:1px solid #f0b2b47a;border-radius:30px;background:radial-gradient(ellipse at 90% 0,#e737333b,transparent 65%),linear-gradient(135deg,#8a101f,#ac1b2a 50%,#5a101c);box-shadow:inset 0 1px #ffc5c96b,0 20px 45px #4b142b2b;backdrop-filter:none;-webkit-backdrop-filter:none}
+.welcome-offer::before{background:linear-gradient(115deg,#ffffff12,transparent 43%,#39020c1c);opacity:1}
+.welcome-offer::after{display:none}
+.welcome-offer>.welcome-glass-content{--light-x:25%;--light-y:0%;position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;align-items:center;width:100%;max-width:none;padding:25px 29px 28px;border:1px solid #ffffff5c;border-radius:21px;background:linear-gradient(145deg,#ffffff20,#ffffff07 54%,#ffffff11);backdrop-filter:blur(20px) saturate(125%);-webkit-backdrop-filter:blur(20px) saturate(125%);box-shadow:inset 0 1px #fff7,inset 0 -1px #2f061f36,0 9px 20px #3a061c1c}
+.welcome-glass-content::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(260px circle at var(--light-x) var(--light-y),#ffffff28,transparent 75%),linear-gradient(115deg,transparent 20%,#ffffff0c 47%,transparent 72%)}
+.welcome-glass-content>.welcome-discount{font-size:69px;line-height:1.1;margin-bottom:16px;display:block;text-shadow:0 2px 12px #350c1650}
+.welcome-glass-content>.small-label{font-size:10px;color:#fff2f0;margin-bottom:13px}
+.welcome-glass-content>h3{font-size:27px;max-width:580px;margin:0 0 15px}
+.welcome-glass-content>p:not(.small-label){font-size:16px;line-height:1.8;color:#fff3f0;margin:0;max-width:540px}
+.welcome-glass-content>.welcome-link{margin-top:21px;background:linear-gradient(135deg,#fffffff0,#dfe6efdc);color:#701321;border-color:#fff9;font-size:16px;box-shadow:inset 0 1px #fff,0 4px 0 #3c081d42,0 9px 18px #330b222b}
+.welcome-reminder{background:linear-gradient(130deg,#981626eb,#6c1523e3);box-shadow:inset 0 1px #ffc4c798,0 14px 32px #3d0e2542}
+/* Correct the footprint of the horizontal 2GIS wordmark. */
+.review-platform>img.logo-2gis{width:38px;height:38px;max-width:none;object-fit:cover;object-position:left center}
+.map-button>img.logo-2gis{width:87px;height:30px;object-fit:contain;flex:none}
+/* Refined silver surfaces leave the real photography in focus. */
+.hero-surface{background:radial-gradient(ellipse at 90% 15%,#f4f8ff8a,transparent 65%),linear-gradient(125deg,#afb3ba,#bfc4ca 50%,#aab0b8)}
+.service-card{background:linear-gradient(145deg,#f6f7f8,#e8ebef);box-shadow:inset 0 1px #fff,0 20px 45px -18px #36465a4a,0 3px 9px #2b394710}
+.category-card{border:1px solid #ffffff6b;box-shadow:inset 0 1px #ffffffb3,0 24px 45px -15px #1423324d}
+.hero-portrait{box-shadow:0 25px 55px -22px #293d586b,0 4px 12px #26364d1c}
+.photo-open{box-shadow:0 20px 35px -17px #263d596b,0 4px 11px #24394e22}
+.gift-delivery{display:flex;gap:17px;padding:23px 25px;margin:0 18px 23px;border:1px solid #ffffffa3;border-radius:19px;background:linear-gradient(135deg,#f5f7fac7,#d8dfe7a3);box-shadow:inset 0 1px #fff,0 12px 25px #34495e10;color:#344357}
+.gift-delivery>svg{width:27px;height:27px;flex:none;stroke-width:1.5;margin-top:2px}
+.gift-delivery h4{font-size:21px;line-height:1.4;margin:0 0 12px;font-weight:750}
+.gift-delivery p{font-size:16px;line-height:1.8;margin:0}
+.gift-delivery p+p{margin-top:14px}
+.gift-terms-grid strong{color:#f4f6f9;font-weight:750}
+/* Every bottom destination has its own restrained gray material. */
+@media(max-width:800px){
+ .bottom-nav{background:#c5cbd2df;backdrop-filter:blur(28px) saturate(115%);-webkit-backdrop-filter:blur(28px) saturate(115%);border-top:1px solid #fff9;box-shadow:0 -12px 30px #27374e24}
+ .bottom-nav>a{background:linear-gradient(145deg,var(--nav-light),var(--nav-shade));color:var(--nav-ink,#2b3849);border-color:#ffffff85;box-shadow:inset 0 1px #ffffffc4,0 3px 7px #3343581a;font-weight:750}
+ .bottom-nav>a[href="#services"]{--nav-light:#f1f2f4;--nav-shade:#d7d9de}
+ .bottom-nav>a[href="#offers"]{--nav-light:#c5c7cd;--nav-shade:#a6aab3;--nav-ink:#213144}
+ .bottom-nav>a[href="#reviews"]{--nav-light:#e3e4e7;--nav-shade:#c5c8cd}
+ .bottom-nav>a[href="#gift"]{--nav-light:#afb3ba;--nav-shade:#8e949d;--nav-ink:#242c37}
+ .bottom-nav>a[href="#cabinet"]{--nav-light:#d9dce1;--nav-shade:#bbc0c8}
+ .bottom-nav>a[href="#address"]{--nav-light:#c1c4cb;--nav-shade:#a7adb7;--nav-ink:#203248}
+ .bottom-nav>a[href="#booking"]{--nav-light:#474d56;--nav-shade:#2b323b;--nav-ink:#fff}
+ .bottom-nav>a.bottom-book{background:linear-gradient(145deg,#474d56,#2b323b);color:#fff}
+ .bottom-nav>a.is-active{border-color:#fff;outline:1px solid #f8fbffb3;outline-offset:1px;box-shadow:inset 0 1px #fff,0 0 0 2px #556d852e,0 5px 12px #263c5a33;filter:brightness(1.07)}
+}
+/* Pulse plus a small upward invitation; the label itself stays stable. */
+@keyframes arrow-lift{0%,30%,100%{transform:translateY(0)}9%{transform:translateY(-3px)}16%{transform:translateY(0)}23%{transform:translateY(-1px)}}
+@keyframes arrow-impulse-strong{0%{box-shadow:0 0 0 0 #5b7b9f88}62%,100%{box-shadow:0 0 0 10px #5b7b9f00}}
+:is(a[href],button) svg:has(use[href="#i-arrow"]){animation:arrow-impulse-strong 3.6s ease-out infinite,arrow-lift 3.6s ease-in-out infinite;animation-delay:var(--impulse-delay,0s),var(--impulse-delay,0s)}
+.button>svg,.service-book>svg{width:32px;height:32px;padding:7px;background:#294a701c;border:1px solid #ffffff9e}
+.button-ink>svg{background:#ffffff28;border-color:#fff5}
+.js-cues :is(a[href],button) svg:has(use[href="#i-arrow"]){animation-play-state:paused}
+.js-cues :is(a[href],button).arrow-awake svg:has(use[href="#i-arrow"]){animation-play-state:running}
+.page-inactive :is(a[href],button) svg:has(use[href="#i-arrow"]){animation-play-state:paused!important}
+:is(.button,.service-book,.welcome-link,.booking-choice,.booking-dialog-online,.messenger,.map-button,.header-book){transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s,background-color .18s,border-color .18s,filter .18s}
+:is(.button,.service-book,.welcome-link,.booking-choice,.booking-dialog-online,.messenger,.map-button,.header-book,.bottom-nav a):active{transform:translateY(3px) scale(.965);box-shadow:inset 0 4px 9px #19334f36,0 1px 3px #213d5d33;border-color:#7d9dbf;filter:brightness(.96)}
+@media(hover:hover){:is(.button,.service-book,.welcome-link,.booking-choice,.booking-dialog-online,.messenger,.map-button,.header-book):hover{border-color:#fff;filter:brightness(1.05);box-shadow:inset 0 1px #fff,0 7px 0 #60748c3d,0 18px 30px #263d5a2c}.category-card:hover{box-shadow:inset 0 1px #fff,0 35px 55px -19px #182f4d66}}
+@media(max-width:800px){.welcome-offer{padding:11px;border-radius:26px}.welcome-offer>.welcome-glass-content{padding:23px 18px 25px;border-radius:17px}.welcome-glass-content>.welcome-discount{font-size:60px;margin-bottom:14px}.welcome-glass-content>h3{font-size:24px}.welcome-glass-content>p:not(.small-label){font-size:15px}.welcome-glass-content>.welcome-link{font-size:15px}.gift-delivery{margin:0 16px 23px;padding:22px 20px;gap:13px}.gift-delivery h4{font-size:20px}.gift-delivery p{font-size:16px}}
+@media(max-width:350px){.welcome-offer{padding:9px}.welcome-offer>.welcome-glass-content{padding:21px 16px 23px}.welcome-glass-content>h3{font-size:22px}.welcome-glass-content>.welcome-discount{font-size:54px}.welcome-glass-content>p:not(.small-label){font-size:14px}.welcome-glass-content>.welcome-link{font-size:14px;padding:11px 13px}.gift-delivery{padding:20px 16px;margin-inline:12px}.gift-delivery>svg{width:22px;height:22px}.gift-delivery h4{font-size:19px}.gift-delivery p{font-size:15px}}
+@media(prefers-reduced-motion:reduce){:is(a[href],button) svg:has(use[href="#i-arrow"]){animation:none!important}}
+@media(max-width:350px){.header-inner{grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) 42px}.header-price,.header-book{min-width:0;padding:9px 8px;gap:6px}.header-price{font-size:14px}.header-price>svg:not(.link-marker){display:none}.header-price>.link-marker{display:block;width:13px;height:13px;padding:2px}.header-book{font-size:13px}.header-book>svg{display:block;width:15px;height:15px;flex:none}}
