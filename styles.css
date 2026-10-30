@@ -438,8 +438,8 @@ summary{min-height:48px;border-radius:10px;background:linear-gradient(120deg,#ff
  .welcome-reminder .reminder-copy>small{font-size:14px}.welcome-reminder .reminder-copy>strong{font-size:17px;margin-bottom:10px}
  .reminder-cta{font-size:15px;gap:8px;padding:8px 9px}.reminder-cta svg{width:22px;height:22px}
  .welcome-glass-content>p:not(.small-label){font-size:17px}.welcome-glass-content>.welcome-link{font-size:17px}
- .catalog-switcher,.catalog-switcher:not(:has(.catalog-quick-kinds:not([hidden]))){padding:7px;gap:7px}
- .catalog-group-tabs{gap:5px}.catalog-group-tabs button{font-size:13px;min-height:58px;padding:7px 5px;line-height:1.35;border-radius:11px}
+ .catalog-switcher,.catalog-switcher:not(:has(.catalog-quick-kinds:not([hidden]))){padding:7px;gap:7px;margin-inline:-8px}
+ .catalog-group-tabs{gap:5px;grid-template-columns:1fr .9fr 1.1fr}.catalog-group-tabs button{font-size:13px;min-height:58px;padding:7px 5px;line-height:1.35;border-radius:11px}
  .catalog-quick-kinds button{font-size:13px;min-height:43px;padding:8px 4px}
  .category-heading h3{font-size:25px}.category-description{font-size:17px}
  .programme-summary{padding:19px 20px!important}.programme-row-top{margin-bottom:12px}
@@ -453,7 +453,7 @@ summary{min-height:48px;border-radius:10px;background:linear-gradient(120deg,#ff
  .welcome-reminder .reminder-discount.discount-chip{font-size:45px;min-width:0;min-height:76px;padding:11px 6px}
  .welcome-reminder .reminder-copy>small{font-size:13px}.welcome-reminder .reminder-copy>strong{font-size:15px}
  .reminder-cta{font-size:14px;padding:7px 8px;gap:5px}.reminder-cta svg{width:20px;height:20px}
- .catalog-group-tabs button{font-size:12px;min-height:57px;padding:7px 3px}.catalog-quick-kinds button{font-size:12px}
+ .catalog-group-tabs button{font-size:12px;min-height:57px;padding:7px 3px}.catalog-group-tabs button[data-group=complex]{letter-spacing:-.015em}.catalog-quick-kinds button{font-size:12px}
  .programme-summary{padding:17px 15px!important}.programme-row-title{font-size:22px}.programme-row-price{font-size:23px}.programme-row-time{font-size:15px}
  .programme-expanded{padding:0 15px 22px}.programme-row-subtitle{font-size:15px}
 }
