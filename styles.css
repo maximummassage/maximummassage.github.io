@@ -557,3 +557,41 @@ summary{min-height:48px;border-radius:10px;background:linear-gradient(120deg,#ff
 #offers .offer-card .offer-top .offer-discount{color:#35485b}
 @media(max-width:800px){.programme-row-subtitle{font-size:26px;padding:13px 15px;border-radius:16px}.programme-row-title{font-size:25px}}
 @media(max-width:350px){.programme-row-subtitle{font-size:23px;padding:12px 12px;border-radius:15px;line-height:1.45}.programme-row-title{font-size:23px}.status-author-mark{font-size:26px}}
+
+/* Real photographs give long reading sections a quieter, human rhythm. */
+.photo-interlude{position:relative;isolation:isolate;display:grid;grid-template-columns:1.2fr .8fr;gap:3px;height:600px;width:100%;margin:0;background:#24313d;overflow:hidden;border-block:1px solid #ffffff45;outline-offset:-5px}
+.photo-interlude figure{position:relative;min-width:0;height:100%;margin:0;overflow:hidden;background:#29343d}
+.photo-interlude img{display:block;width:100%;height:100%;object-fit:cover}
+.photo-interlude:after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,#14212d16,transparent 22%,transparent 78%,#14212d2b);box-shadow:inset 0 1px #ffffff20,inset 0 -1px #ffffff30}
+.interlude-hands img{object-position:center 63%}.interlude-maxim img{object-position:center 72%}
+.photo-interlude-room{height:520px;grid-template-columns:1.1fr .9fr}
+.interlude-room img{object-position:center 35%}.interlude-light img{object-position:center 50%}
+.booking-with-photo{position:relative;isolation:isolate;overflow:hidden}
+.booking-backdrop{position:absolute;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+.booking-backdrop img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 43%;opacity:.62}
+.booking-with-photo:before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(100deg,#12202cea 4%,#14222cba 47%,#18252ee8 100%)}
+.booking-with-photo .booking-panel{position:relative;z-index:1}
+.booking-with-photo .booking-copy>p:not(.eyebrow),.booking-with-photo .messenger-label{color:#e2e7ed}
+.booking-with-photo .messenger{background:#dce6f018;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.session-fragments[hidden]{display:none}.session-fragments h2{max-width:900px;font:500 clamp(44px,6vw,76px)/1.15 Oswald,sans-serif;letter-spacing:-.02em;color:#2c3e50}
+.session-reel-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding:32px 0 24px;scrollbar-width:thin;scrollbar-color:#75879860 transparent;overscroll-behavior-x:contain}
+.session-reel{position:relative;flex:0 0 min(370px,82vw);margin:0;scroll-snap-align:start;border:1px solid #ffffffc7;border-radius:25px;background:#1f2a34;overflow:hidden;box-shadow:0 14px 30px #1c2e4526}
+.session-reel video{display:block;width:100%;aspect-ratio:9/16;object-fit:contain;background:#18222d}
+.session-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:78px;height:78px;padding:0;border:1px solid #ffffffd9;border-radius:26px;background:linear-gradient(135deg,#eef6ff70,#d0dfef24);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 2px #ffffffb3,0 9px 28px #1020316b;cursor:pointer;color:#fff}
+.session-play svg{width:32px;height:32px;fill:currentColor;stroke:none;filter:drop-shadow(0 2px 3px #10203160)}
+.session-play[hidden]{display:none}.session-play:focus-visible{outline:3px solid white;outline-offset:5px}
+@media(hover:hover){.session-play:hover{background:linear-gradient(135deg,#ffffffa3,#e6efff54);box-shadow:inset 0 2px #ffffffd9,0 12px 32px #10203180}}
+@media(min-width:1800px){.photo-interlude{height:690px}.photo-interlude-room{height:600px}}
+@media(max-width:800px){
+ .photo-interlude{display:flex;gap:10px;height:clamp(390px,128vw,520px);padding:0 18px 10px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-inline:18px;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#d4dce480 transparent;background:#32404b}
+ .photo-interlude figure{flex:0 0 calc(100% - 22px);scroll-snap-align:start;border-radius:0 0 19px 19px}
+ .photo-interlude:after{display:none}
+ .photo-interlude img{object-position:center 63%}
+ .photo-interlude .interlude-maxim img{object-position:center 65%}
+ .photo-interlude-room{height:clamp(390px,128vw,520px)}
+ .photo-interlude-room .interlude-room img{object-position:center 35%}
+ .photo-interlude-room .interlude-light img{object-position:center 50%}
+ .booking-backdrop img{object-position:40% top;opacity:.85}
+ .booking-with-photo:before{background:linear-gradient(180deg,#101d2a80,#142331c2 55%,#172630ed)}
+}
+@media(prefers-reduced-motion:reduce){.photo-interlude{scroll-behavior:auto;scroll-snap-type:none}}

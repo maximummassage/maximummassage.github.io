@@ -222,6 +222,51 @@
     glass.addEventListener('pointermove',e=>{lastPoint={x:e.clientX,y:e.clientY};if(pending)return;pending=true;requestAnimationFrame(()=>{const rect=glass.getBoundingClientRect();glass.style.setProperty('--light-x',(lastPoint.x-rect.left)+'px');glass.style.setProperty('--light-y',(lastPoint.y-rect.top)+'px');pending=false;});});
   }
 
+
+  const sessionClips=Array.isArray(window.SESSION_FRAGMENTS)?window.SESSION_FRAGMENTS:[];
+  const sessionSection=document.getElementById('session-fragments'),sessionTrack=document.getElementById('session-reel-track');
+  const sessionVideos=[];
+  for(const [index,clip] of sessionClips.entries()){
+    if(!clip||typeof clip.file!=='string'||!clip.file.trim())continue;
+    const figure=node('figure','session-reel'),video=node('video'),play=node('button','session-play');
+    play.type='button';play.setAttribute('aria-label','Смотреть фрагмент сеанса массажа '+(index+1));
+    const playArt=document.createElementNS('http://www.w3.org/2000/svg','svg');playArt.setAttribute('viewBox','0 0 24 24');playArt.setAttribute('aria-hidden','true');
+    const playPath=document.createElementNS(playArt.namespaceURI,'path');playPath.setAttribute('d','M8 5.5a1 1 0 0 1 1.5-.86l9 5.5a1 1 0 0 1 0 1.72l-9 5.5A1 1 0 0 1 8 16.5Z');playArt.append(playPath);play.append(playArt);
+    video.controls=true;video.playsInline=true;video.muted=true;video.preload='none';video.src=clip.file;
+    if(typeof clip.poster==='string')video.poster=clip.poster;
+    video.setAttribute('aria-label','Фрагмент сеанса массажа '+(index+1));
+    video.addEventListener('play',()=>{play.hidden=true;sessionVideos.forEach(other=>{if(other!==video)other.pause();});});
+    video.addEventListener('pause',()=>{play.hidden=false;});video.addEventListener('ended',()=>{play.hidden=false;});
+    play.addEventListener('click',()=>video.play().catch(()=>{play.hidden=false;}));
+    sessionVideos.push(video);figure.append(video,play);sessionTrack.append(figure);
+  }
+  if(sessionVideos.length){
+    sessionSection.hidden=false;
+    const sessionNav=node('a');sessionNav.href='#session-fragments';
+    const sessionNavIcon=node('span','nav-icon');sessionNavIcon.append(icon('fragments'));
+    sessionNav.append(sessionNavIcon,node('span','','Фрагмент сеанса массажа'));
+    sessionNav.addEventListener('click',closeMenu);
+    menuPanel.querySelector('a[href="#services"]').after(sessionNav);
+    if('IntersectionObserver' in window){
+      const sessionObserver=new IntersectionObserver(entries=>{
+        for(const e of entries)if(!e.isIntersecting)e.target.pause();
+      },{threshold:.15});
+      sessionVideos.forEach(video=>sessionObserver.observe(video));
+    }
+    document.addEventListener('visibilitychange',()=>{if(document.hidden)sessionVideos.forEach(video=>video.pause());});
+  }
+  // Reveal real photographs once; native scrolling remains available without JS.
+  if('IntersectionObserver' in window&&!reduce.matches){
+    const photoBreakObserver=new IntersectionObserver(entries=>{
+      for(const e of entries){
+        if(!e.isIntersecting)continue;
+        photoBreakObserver.unobserve(e.target);
+        playEntrance(e.target,[{transform:'scale(1.035)',opacity:.65},{transform:'scale(1)',opacity:1}],{duration:1900,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'});
+      }
+    },{threshold:.18});
+    document.querySelectorAll('.photo-interlude img').forEach(img=>photoBreakObserver.observe(img));
+  }
+
   const progress=document.querySelector('.reading-progress');let scheduled=false;function updateProgress(){const height=document.documentElement.scrollHeight-innerHeight;progress.style.transform=`scaleX(${height>0?Math.min(1,Math.max(0,scrollY/height)):0})`;scheduled=false;}addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(updateProgress);}},{passive:true});addEventListener('resize',updateProgress);updateProgress();
   if('IntersectionObserver' in window){const navObserver=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){const id=e.target.id==='catalog'?'services':e.target.id;document.querySelectorAll('.bottom-nav a').forEach(a=>{const active=a.getAttribute('href')==='#'+id;a.classList.toggle('is-active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});}},{rootMargin:'-20% 0px -65% 0px'});document.querySelectorAll('#services,#catalog,#offers,#reviews,#gift,#cabinet,#address,#booking').forEach(e=>navObserver.observe(e));}
 })();
