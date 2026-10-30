@@ -5,22 +5,77 @@
   const price=new Intl.NumberFormat('ru-RU');
   const node=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text)e.textContent=text;return e;};
   const icon=name=>{const s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('aria-hidden','true');const u=document.createElementNS(s.namespaceURI,'use');u.setAttribute('href','#i-'+name);s.append(u);return s;};
+  const entranceAnimations=new Set();
+  function playEntrance(el,frames,timing){
+    const a=el.animate(frames,timing);entranceAnimations.add(a);
+    a.finished.then(()=>{entranceAnimations.delete(a);a.cancel();}).catch(()=>entranceAnimations.delete(a));
+    return a;
+  }
   const motionObserver='IntersectionObserver' in window?new IntersectionObserver(entries=>{
-    for(const e of entries){if(!e.isIntersecting)continue;motionObserver.unobserve(e.target);if(reduce.matches)continue;const el=e.target;const kind=el.dataset.motion;const direction=Number(el.dataset.direction||1);const delay=Number(el.dataset.delay||0);let frames;
-      if(kind==='line')frames=[{transform:'translateY(110%) rotate(2deg)',filter:'blur(5px)',opacity:0},{transform:'translateY(0) rotate(0)',filter:'blur(0)',opacity:1}];
-      else if(kind==='photo')frames=[{transform:'translateY(24px) scale(.975)',opacity:0},{transform:'translateY(0) scale(1)',opacity:1}];
-      else if(kind==='card')frames=[{transform:`translate3d(${direction*45}px,70px,0) scale(.92) rotate(${direction*2}deg)`,opacity:0},{transform:'translate3d(0,0,0) scale(1) rotate(0)',opacity:1}];
-      else frames=[{transform:'translateY(36px)',filter:'blur(3px)',opacity:0},{transform:'translateY(0)',filter:'blur(0)',opacity:1}];
+    for(const e of entries){
+      if(!e.isIntersecting)continue;
+      const el=e.target;motionObserver.unobserve(el);el.dataset.revealPlayed='1';
+      if(reduce.matches)continue;
+      const kind=el.dataset.motion,direction=Number(el.dataset.direction||1),delay=Number(el.dataset.delay||0);
+      const timing={duration:850,delay,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'};
+      if(kind==='title'){
+        el.dataset.revealFrom=direction<0?'left':'right';
+        playEntrance(el,[{transform:`translateX(${direction*22}px)`,opacity:0},{transform:'translateX(0)',opacity:1}],{...timing,duration:620});
+        const letters=el.querySelectorAll('.motion-letter');
+        letters.forEach((letter,i)=>playEntrance(letter,[
+          {transform:`translate3d(${direction*17}px,4px,0)`,opacity:0,filter:'blur(2px)'},
+          {transform:'translate3d(0,0,0)',opacity:1,filter:'blur(0)'}
+        ],{...timing,duration:540,delay:delay+Math.min(i*18,420)}));
+        continue;
+      }
+      let frames;
+      if(kind==='side'){
+        el.dataset.revealFrom=direction<0?'left':'right';
+        frames=[{transform:`translate3d(${direction*30}px,5px,0)`,opacity:0,filter:'blur(2px)'},{transform:'translate3d(0,0,0)',opacity:1,filter:'blur(0)'}];
+        timing.duration=760;
+      }else if(kind==='photo')frames=[{transform:'translateY(24px) scale(.975)',opacity:0},{transform:'translateY(0) scale(1)',opacity:1}];
+      else if(kind==='card'){
+        frames=[{transform:`translate3d(${direction*45}px,70px,0) scale(.92) rotate(${direction*2}deg)`,opacity:0},{transform:'translate3d(0,0,0) scale(1) rotate(0)',opacity:1}];timing.duration=1000;
+      }else frames=[{transform:'translateY(36px)',filter:'blur(3px)',opacity:0},{transform:'translateY(0)',filter:'blur(0)',opacity:1}];
       if(kind==='photo')el.classList.add('gallery-entered');
-      el.animate(frames,{duration:kind==='card'?1000:850,delay,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'});
+      playEntrance(el,frames,timing);
     }
   },{threshold:.12,rootMargin:'0px 0px -15px 0px'}):null;
-  function motion(el,kind='block',index=0){if(!motionObserver||reduce.matches)return;el.dataset.motion=kind;el.dataset.direction=index%2?-1:1;el.dataset.delay=String((index%3)*125);motionObserver.observe(el);}
-  function titleMotion(el){if(reduce.matches||!motionObserver)return;const parts=el.innerHTML.split(/<br\s*\/?\s*>/i);el.replaceChildren();parts.forEach((html,i)=>{const line=node('span','motion-line'),inside=node('span','motion-content');inside.innerHTML=html;line.append(inside);el.append(line);motion(inside,'line',i);});}
-  document.querySelectorAll('h2:not(#booking-dialog-title)').forEach(titleMotion);
-  document.querySelectorAll('.hero-brand,.hero-location,.hero-portrait,.hero-intro,.hero-actions').forEach((el,i)=>motion(el,'block',i));
+  function motion(el,kind='block',index=0){
+    if(!motionObserver||reduce.matches)return;
+    el.dataset.motion=kind;el.dataset.direction=index%2?-1:1;el.dataset.delay=String((index%3)*90);motionObserver.observe(el);
+  }
+  function titleMotion(el,index=0){
+    if(reduce.matches||!motionObserver)return;
+    const label=el.innerText.replace(/\s+/g,' ').trim(),parts=el.innerHTML.split(/<br\s*\/?\s*>/i);
+    el.setAttribute('aria-label',label);el.dataset.letterTitle='1';el.replaceChildren();
+    parts.forEach((html,lineIndex)=>{
+      const line=node('span','motion-line'),inside=node('span','motion-content');
+      line.setAttribute('aria-hidden','true');inside.innerHTML=html;
+      const walker=document.createTreeWalker(inside,NodeFilter.SHOW_TEXT),texts=[];
+      while(walker.nextNode())texts.push(walker.currentNode);
+      for(const text of texts){
+        const fragment=document.createDocumentFragment();
+        for(const part of text.textContent.split(/(\s+)/u)){
+          if(!part)continue;
+          if(/^\s+$/u.test(part)){fragment.append(document.createTextNode(part));continue;}
+          const word=node('span','motion-word');
+          for(const char of Array.from(part))word.append(node('span','motion-letter',char));
+          fragment.append(word);
+        }
+        text.replaceWith(fragment);
+      }
+      line.append(inside);el.append(line);motion(inside,'title',index+lineIndex);
+    });
+  }
+  // Alternating directions follow the page's sections, not every line of body copy.
+  document.querySelectorAll('h2:not(#booking-dialog-title),#welcome-offer-title,#gift-terms-title').forEach(titleMotion);
+  document.querySelectorAll('.hero-brand,.hero-location,.hero-portrait,.hero-actions').forEach((el,i)=>motion(el,'block',i));
+  document.querySelectorAll('.hero-intro p,.section-copy,.review-copy>p:not(.eyebrow),.gift-help,.gift-terms-intro,.film-copy>p:not(.small-label)').forEach((el,i)=>motion(el,'side',i));
   document.querySelectorAll('.category-card').forEach((el,i)=>motion(el,'card',i));
   document.querySelectorAll('.approach-block,.education,.gift-format,.gift-bottom,.offer-card,.course-terms,.comfort-grid article,.cabinet-film,.first-visit,.route-gallery figure,.reviews-card,.booking-options').forEach((el,i)=>motion(el,'block',i));
+  reduce.addEventListener('change',e=>{if(e.matches)for(const a of entranceAnimations)a.finish();});
+
   function fitTagline(){const heading=document.getElementById('brand-title'),line=document.querySelector('.brand-tagline'),span=line?.firstElementChild;if(!heading||!span)return;span.style.letterSpacing='0px';span.style.marginRight='0';const range=document.createRange();range.selectNodeContents(heading);const width=Math.min(range.getBoundingClientRect().width,heading.getBoundingClientRect().width);line.style.width=width+'px';const natural=span.getBoundingClientRect().width;const spacing=Math.max(0,(width-natural)/(Array.from(span.textContent.trim()).length-1));span.style.letterSpacing=spacing+'px';span.style.marginRight=-spacing+'px';}
   function fitAddress(){const box=document.querySelector('.hero-location'),a=box?.querySelector('a'),pin=box?.querySelector('svg');if(!a)return;a.style.fontSize='21px';const gap=parseFloat(getComputedStyle(box).gap)||10,available=box.clientWidth-(pin?.getBoundingClientRect().width||0)-gap;const range=document.createRange();range.selectNodeContents(a);const width=range.getBoundingClientRect().width;if(width>available)a.style.fontSize=(21*available/width)+'px';}
   function fitBrand(){const heading=document.getElementById('brand-title'),box=document.querySelector('.hero');if(!heading||!box)return;heading.style.fontSize='';const range=document.createRange();range.selectNodeContents(heading);const width=range.getBoundingClientRect().width,max=box.clientWidth;if(width>max){const size=parseFloat(getComputedStyle(heading).fontSize);heading.style.fontSize=Math.max(10,size*max/width-.3)+'px';}}

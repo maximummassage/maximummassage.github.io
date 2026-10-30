@@ -7,3 +7,11 @@
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}:root{scroll-behavior:auto}.reading-progress{display:none}}
 
 .motion-line,.motion-content{color:inherit!important;font-weight:inherit!important}
+
+/* Words preserve natural wrapping; letters remain one accessible heading label. */
+.motion-word,.motion-letter{display:inline-block;color:inherit!important;font-weight:inherit!important;line-height:inherit}
+.motion-word{white-space:nowrap;vertical-align:baseline}
+.motion-letter{vertical-align:baseline}
+.motion-line{padding-block:.04em .13em;margin-top:-.04em;margin-bottom:-.13em;overflow:hidden;overflow:clip}
+.motion-content{width:100%}
+@media(prefers-reduced-motion:reduce){.motion-word,.motion-letter{transform:none!important;filter:none!important;opacity:1!important}}
