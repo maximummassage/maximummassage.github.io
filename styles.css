@@ -869,3 +869,19 @@ summary{min-height:48px;border-radius:10px;background:linear-gradient(120deg,#ff
 
 @media(max-width:800px){.status-signature{display:grid;grid-template-columns:34px minmax(0,1fr);align-items:center;gap:7px 12px}.status-signature>div{display:contents}.status-signature .status-author-mark{grid-column:1;grid-row:1}.status-signature .status-author-name{display:block;grid-column:2;grid-row:1}.status-signature .status-author-role{display:block;grid-column:1/-1;margin:0;font-size:24px;line-height:1.4}}
 @media(max-width:350px){.status-signature .status-author-role{font-size:23px}}
+
+/* New opening photograph: soft, neutral darkening, original colours and contrast. */
+.hero-process-photo svg{filter:brightness(.9)}
+/* A wider room view behind the atmosphere introduction, fading into the gallery. */
+.cabinet-photo-scene>.scene-photo{height:min(100%,950px);bottom:auto}
+.cabinet-photo-scene>.scene-photo svg{display:block;width:100%;height:100%}
+.cabinet-photo-scene:before{background:linear-gradient(100deg,#142736b5,#19334455 65%,#172d4033),linear-gradient(180deg,transparent 350px,#233543 950px)}
+.cabinet-photo-scene .section-head{min-height:360px}
+@media(max-width:800px){
+ .cabinet-photo-scene>.scene-photo{height:800px}
+ .cabinet-photo-scene:before{background:linear-gradient(105deg,#142837a3,#1b33444d),linear-gradient(180deg,transparent 450px,#233543 800px)}
+ .cabinet-photo-scene .section-head{min-height:400px}
+}
+
+@media(max-width:800px){.hero-process-scene{padding-top:520px}.hero-process-photo{height:560px}.hero-process-photo:after{background:linear-gradient(180deg,#a2afb900 83%,#a2afb9 100%)}}
+@media(max-width:350px){.hero-process-scene{padding-top:460px}.hero-process-photo{height:490px}}
