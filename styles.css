@@ -712,3 +712,62 @@ summary{min-height:48px;border-radius:10px;background:linear-gradient(120deg,#ff
  .address-arrival-scene .address-data span{font-size:13px;line-height:1.8}
 }
 @media(max-width:350px){.education-photo-scene{padding:25px 19px}.education-photo-scene .education-head h3{font-size:29px}.education-photo-scene .education-head>div:last-child{padding:23px 18px}.gift-photo-scene{padding:155px 12px 14px}.gift-photo-scene .gift-bottom,.gift-photo-scene .gift-terms{padding:25px 18px}.address-arrival-scene{padding:27px 19px}.address-arrival-scene h2{font-size:47px}.address-arrival-scene .address-data{padding:20px 15px}.address-arrival-scene .address-data p{font-size:20px}.address-arrival-scene .address-data span{font-size:12px}}
+
+/* Keep Maxim, both hands and the complete working gesture in the photograph. */
+.hero-process-scene{position:relative;isolation:isolate;display:block;overflow:hidden;padding:35px 0;min-height:0;border:1px solid #ffffff8c;border-radius:36px;background:#a2afb9;box-shadow:inset 0 1px #fff9,0 22px 45px #223a522b}
+.hero-process-photo{position:absolute;inset:0 0 auto 45%;height:730px;z-index:0;pointer-events:none;overflow:hidden}
+.hero-process-photo svg{display:block;width:100%;height:100%}
+.hero-process-photo:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#a2afb9 0%,#a2afb9 10%,#a2afb900 24%,#a2afb900 76%,#a2afb9 92%),linear-gradient(0deg,#a2afb9 0%,#a2afb900 25%)}
+.hero-process-scene .hero-copy{position:relative;z-index:1;width:49%;margin-left:28px;padding:34px 30px;border:1px solid #ffffffc4;border-radius:29px;background:linear-gradient(125deg,#f4f7fbe8,#e1e9f0d4);box-shadow:inset 0 1px #fff,0 16px 32px #233f5926;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}
+.hero-process-scene .hero-copy h2{font-size:clamp(56px,5.5vw,78px)}
+.hero-process-scene .hero-intro{font-size:19px;line-height:1.75}
+.hero-process-scene .about-status{margin-inline:0}
+.hero-follow-up{position:relative;z-index:1;display:grid;grid-template-columns:1.12fr 1fr;gap:30px;align-items:center;margin:70px 28px 0}
+.hero-follow-up .about-status{margin:0}
+.hero-follow-up .hero-actions{max-width:none;padding:28px;border:1px solid #ffffffb3;border-radius:26px;background:linear-gradient(125deg,#f1f6fbe0,#dce7f0c7);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);box-shadow:inset 0 1px #fff9,0 12px 25px #22394e1c}
+/* Wide cabinet views are fitted completely rather than magnified to cover. */
+.comfort-scene{background:#2d424f}
+.comfort-scene>.scene-photo{left:0;right:0;height:550px;bottom:auto}
+.comfort-scene>.scene-photo:before{content:'';position:absolute;inset:-25px;background:url('comfort-wide-v24.jpg') center 55%/cover;filter:blur(22px);opacity:.58}
+.comfort-scene .scene-photo img{position:absolute;right:7%;top:0;width:auto;height:100%;aspect-ratio:9/16;object-fit:contain;object-position:center top;transform:none!important;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.comfort-scene:before{background:linear-gradient(90deg,#203440f5 0%,#203440d6 37%,#20344000 75%),linear-gradient(0deg,#203440cc 0%,#20344000 75%)}
+.comfort-scene>.section-head{min-height:360px;margin-bottom:36px;padding-right:45%}
+.comfort-scene>.section-head h2{position:relative;z-index:1;font-size:clamp(48px,5.8vw,76px)}
+.comfort-scene>.scene-accent{top:230px;right:auto;left:48px}
+.booking-with-photo{background-color:#263b4c}
+.booking-with-photo .booking-backdrop{inset:0 48% 0 0;height:auto}
+.booking-with-photo .booking-backdrop img{object-fit:cover;object-position:center 57%;opacity:1;transform:none!important}
+.booking-with-photo:before{background:linear-gradient(90deg,#203645b3,#20364570 35%,#203645ff 54%),linear-gradient(0deg,#2036458a,transparent 70%)}
+.booking-with-photo .booking-copy{padding-top:0}
+.booking-with-photo .booking-copy>p:not(.eyebrow){max-width:520px}
+.gift-photo-scene .gift-bottom{width:68%}
+.gift-photo-scene>.scene-photo svg{object-position:center}
+@media(max-width:1100px){.hero-process-scene .hero-copy{margin-left:23px;padding:30px 25px;width:50%}.hero-process-scene .hero-intro{font-size:18px}.hero-process-scene .hero-copy h2{font-size:60px}.comfort-scene>.section-head{padding-right:44%}.comfort-scene>.scene-accent{left:40px}}
+@media(max-width:800px){
+ .hero-process-scene{margin-inline:-8px;padding:465px 15px 18px;min-height:0;border-radius:29px;background:#a2afb9}
+ .hero-process-photo{inset:0 0 auto;height:650px}
+ .hero-process-photo:after{background:linear-gradient(180deg,#a2afb900 58%,#a2afb9 88%)}
+ .hero-process-scene .hero-copy{width:auto;margin:0;padding:29px 23px;border-radius:25px;background:linear-gradient(125deg,#f3f7fbeb,#e0e9f1df)}
+ .hero-process-scene .hero-copy h2{font-size:56px}
+ .hero-process-scene .hero-intro{font-size:18px;line-height:1.8}
+ .hero-follow-up{display:block;margin:22px 0 0}
+ .hero-follow-up .hero-actions{margin-top:22px;padding:23px 19px;border-radius:25px}
+ .comfort-scene>.scene-photo{left:0;right:0;top:0;height:600px}
+ .comfort-scene>.scene-photo:before{display:none}
+ .comfort-scene .scene-photo img{width:100%;right:0;object-position:center top;object-fit:contain;mask-image:none;-webkit-mask-image:none}
+ .comfort-scene:before{background:linear-gradient(180deg,#20344000 0%,#20344000 44%,#203440c9 65%,#203440f5 90%)}
+ .comfort-scene>.eyebrow{margin-top:480px;max-width:none}
+ .comfort-scene>.section-head{min-height:0;padding-right:0;margin-bottom:28px}
+ .comfort-scene>.section-head h2{max-width:none;font-size:52px}
+ .comfort-scene>.scene-accent{top:31px;left:22px;right:auto;width:65px;height:65px;border-radius:20px}
+ .comfort-scene>.scene-accent svg{width:36px;height:36px}
+ .booking-with-photo .booking-backdrop{inset:0 0 auto;height:600px}
+ .booking-with-photo .booking-backdrop img{height:780px;margin-top:-180px;object-position:center top;object-fit:contain;opacity:1}
+ .booking-with-photo:before{background:linear-gradient(180deg,#20364500 0px,#20364515 300px,#203645f5 530px,#203645)}
+ .booking-with-photo .booking-panel{padding-top:430px}
+ .booking-with-photo .booking-copy{padding-top:0}
+ .gift-photo-scene .gift-bottom{width:auto}
+ .gift-photo-scene .gift-terms{background:linear-gradient(110deg,#14293cdb,#14293cbf),url('gift-set-v24.jpg') 50% 56%/cover}
+}
+@media(max-width:350px){.hero-process-scene{padding:400px 12px 15px}.hero-process-photo{height:580px}.hero-process-scene .hero-copy{padding:27px 19px}.hero-process-scene .hero-copy h2{font-size:50px}.hero-process-scene .hero-intro{font-size:17px}.comfort-scene>.scene-photo{height:525px}.comfort-scene>.eyebrow{margin-top:415px}.comfort-scene>.section-head h2{font-size:46px}.booking-with-photo .booking-backdrop{height:500px}.booking-with-photo .booking-backdrop img{height:650px;margin-top:-140px}.booking-with-photo .booking-panel{padding-top:355px}}
+@media(prefers-reduced-motion:reduce){.hero-process-photo{transform:none!important}.comfort-scene .scene-photo img,.booking-backdrop img{transform:none!important}}
