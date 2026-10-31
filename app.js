@@ -319,4 +319,28 @@
 
   const progress=document.querySelector('.reading-progress');let scheduled=false;function updateProgress(){const height=document.documentElement.scrollHeight-innerHeight;progress.style.transform=`scaleX(${height>0?Math.min(1,Math.max(0,scrollY/height)):0})`;scheduled=false;}addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(updateProgress);}},{passive:true});addEventListener('resize',updateProgress);updateProgress();
   if('IntersectionObserver' in window){const navObserver=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){const id=e.target.id==='catalog'?'services':e.target.id;document.querySelectorAll('.bottom-nav a').forEach(a=>{const active=a.getAttribute('href')==='#'+id;a.classList.toggle('is-active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});}},{rootMargin:'-20% 0px -65% 0px'});document.querySelectorAll('#services,#catalog,#offers,#reviews,#gift,#cabinet,#address,#booking').forEach(e=>navObserver.observe(e));}
+
+  // A separate return-to-top control clears both the navigation and the reminder.
+  const floatingTop=document.getElementById('floating-top');
+  const quickNavigation=document.querySelector('.bottom-nav');
+  let topScheduled=false;
+  function updateFloatingTop(){
+    floatingTop.hidden=scrollY<innerHeight*1.35;
+    let occupied=0;
+    for(const panel of [quickNavigation]){
+      if(!panel||panel.hidden||getComputedStyle(panel).display==='none')continue;
+      const rect=panel.getBoundingClientRect();
+      if(rect.height>0&&rect.top<innerHeight)occupied=Math.max(occupied,innerHeight-rect.top);
+    }
+    floatingTop.style.setProperty('--floating-top-bottom',Math.round(occupied+14)+'px');
+    topScheduled=false;
+  }
+  function scheduleFloatingTop(){if(!topScheduled){topScheduled=true;requestAnimationFrame(updateFloatingTop);}}
+  addEventListener('scroll',scheduleFloatingTop,{passive:true});
+  addEventListener('resize',scheduleFloatingTop);
+  new MutationObserver(scheduleFloatingTop).observe(reminder,{attributes:true,attributeFilter:['hidden']});
+  if('ResizeObserver' in window){const topObserver=new ResizeObserver(scheduleFloatingTop);topObserver.observe(quickNavigation);topObserver.observe(reminder);}
+  floatingTop.addEventListener('click',event=>{event.preventDefault();window.scrollTo({top:0,behavior:reduce.matches?'instant':'smooth'});});
+  document.fonts.ready.then(scheduleFloatingTop);updateFloatingTop();
+
 })();

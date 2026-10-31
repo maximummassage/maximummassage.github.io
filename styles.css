@@ -885,3 +885,58 @@ summary{min-height:48px;border-radius:10px;background:linear-gradient(120deg,#ff
 
 @media(max-width:800px){.hero-process-scene{padding-top:520px}.hero-process-photo{height:560px}.hero-process-photo:after{background:linear-gradient(180deg,#a2afb900 83%,#a2afb9 100%)}}
 @media(max-width:350px){.hero-process-scene{padding-top:460px}.hero-process-photo{height:490px}}
+
+/* The opening photograph is the entire surface, with copy directly over it. */
+.hero-process-scene{display:block;padding:0;margin-inline:0;border:0;border-radius:0;overflow:visible;background:none;box-shadow:none}
+.hero-intro-surface{position:relative;isolation:isolate;overflow:hidden;min-height:710px;border:1px solid #eef3f985;border-radius:34px;background:#252a30;box-shadow:inset 0 1px #fff7,0 22px 45px #172b402b}
+.hero-intro-surface .hero-process-photo{position:absolute;inset:0;width:100%;height:100%;z-index:-2;overflow:hidden}
+.hero-intro-surface .hero-process-photo:before{content:'';position:absolute;inset:-20px;background:url('hero-process-v26.jpg') 50% 64%/cover;filter:blur(15px);opacity:.8}
+.hero-intro-surface .hero-process-photo svg{position:relative;display:block;width:100%;height:100%;filter:brightness(.9)}
+.hero-intro-surface .hero-process-photo .hero-photo-mobile{display:none}
+.hero-intro-surface .hero-process-photo:after{display:none}
+.hero-intro-surface:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#141b25eb,#19212dc9 43%,#19212d42 75%,#19212d26),linear-gradient(0deg,#19212d88,transparent 45%);pointer-events:none}
+.hero-process-scene .hero-intro-surface .hero-copy{width:58%;margin:0;padding:55px 45px;border:0;border-radius:0;background:none;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;color:#f0f4f8}
+.hero-process-scene .hero-copy h2,.hero-process-scene .hero-copy h2 strong{color:#f5f8fb;text-shadow:0 2px 18px #0a142144}
+.hero-process-scene .hero-intro{color:#e8edf3;font-size:20px;line-height:1.85}
+.hero-process-scene .hero-intro strong{color:#fff}
+/* Portrait and quotation share one rounded photographic surface. */
+.hero-quote-surface{position:relative;isolation:isolate;overflow:hidden;display:block;padding:35px;margin:30px 0 0;min-height:650px;border:1px solid #eaf2fc8c;border-radius:34px;background:#34404b;box-shadow:inset 0 1px #fff8,0 20px 42px #24384c2b}
+.hero-quote-surface:before{content:'';position:absolute;inset:-22px;z-index:-2;background:url('maxim-portrait-v25.jpg') 50% 40%/cover;filter:blur(22px);opacity:.65;pointer-events:none}
+.hero-quote-surface:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#202d3bd9,#233243a8 50%,#24334426);pointer-events:none}
+.hero-follow-up.hero-quote-surface .hero-portrait{position:absolute;inset:0 0 0 auto;z-index:-1;margin:0;width:46%;height:100%;max-width:none;aspect-ratio:auto;border:0;border-radius:0;box-shadow:none;pointer-events:none;mask-image:linear-gradient(90deg,transparent,#000 27%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 27%)}
+.hero-follow-up.hero-quote-surface .hero-portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+.hero-quote-surface .hero-follow-up-copy{position:relative;width:60%;z-index:1}
+.hero-quote-surface .about-status{background:linear-gradient(135deg,#f4f7fbe8,#dce6efcf);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.hero-quote-surface .hero-actions{background:linear-gradient(135deg,#edf4f9e5,#d6e2ecc9)}
+/* A small independent glass rectangle above the bottom navigation. */
+.floating-top{position:fixed;z-index:46;right:max(20px,calc((100vw - 1240px)/2));bottom:var(--floating-top-bottom,24px);display:flex;align-items:center;justify-content:space-between;gap:22px;min-width:148px;min-height:49px;padding:11px 16px 11px 20px;border:1px solid #ffffffdc;border-radius:16px;background:linear-gradient(135deg,#f6faffeb,#d1dce8dc);color:#26394c;text-decoration:none;font:700 16px/1.3 Manrope,sans-serif;box-shadow:inset 0 2px #fff,inset 0 -3px #74869a28,0 9px 22px #142c4938;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:box-shadow .2s ease,translate .2s ease}
+.floating-top[hidden]{display:none!important}
+.floating-top svg{width:26px;height:26px;rotate:-90deg;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.floating-top:hover{translate:0 -2px;box-shadow:inset 0 2px #fff,inset 0 -3px #74869a28,0 13px 28px #142c4955}
+.floating-top:active{translate:0 2px;box-shadow:inset 0 2px 5px #314b6529,0 4px 10px #142c492e}
+.floating-top:focus-visible{outline:3px solid #547ba7;outline-offset:4px}
+@media(max-width:1100px){.hero-process-scene .hero-intro-surface .hero-copy{padding:45px 32px}.hero-process-scene .hero-intro{font-size:19px}.hero-quote-surface{padding:28px}.hero-quote-surface .hero-follow-up-copy{width:62%}}
+@media(max-width:800px){
+ .hero-process-scene{padding:0;margin-inline:-8px;background:none}
+ .hero-intro-surface{min-height:0;border-radius:28px}
+ .hero-intro-surface .hero-process-photo:before{display:none}
+ .hero-intro-surface .hero-process-photo .hero-photo-desktop{display:none}
+ .hero-intro-surface .hero-process-photo .hero-photo-mobile{display:block}
+ .hero-intro-surface:after{background:linear-gradient(180deg,#151c281f 0%,#151c2829 29%,#151c28bd 51%,#151c28e8 100%)}
+ .hero-process-scene .hero-intro-surface .hero-copy{width:100%;margin:0;padding:390px 25px 34px;background:none}
+ .hero-process-scene .hero-copy h2{font-size:56px}
+ .hero-process-scene .hero-intro{font-size:18px;line-height:1.85}
+ .hero-follow-up.hero-quote-surface{display:block;margin:25px 0 0;padding:355px 17px 20px;min-height:0;border-radius:28px}
+ .hero-quote-surface:after{background:linear-gradient(180deg,#24334408,#24334435 32%,#243344c9 56%,#243344e8)}
+ .hero-follow-up.hero-quote-surface .hero-portrait{inset:0 0 auto;width:100%;height:550px;max-width:none;mask-image:linear-gradient(180deg,#000 60%,transparent 100%);-webkit-mask-image:linear-gradient(180deg,#000 60%,transparent 100%)}
+ .hero-follow-up.hero-quote-surface .hero-portrait img{object-position:50% 22%}
+ .hero-quote-surface .hero-follow-up-copy{width:100%}
+ .hero-quote-surface .about-status{background:linear-gradient(135deg,#f5f8fbe3,#dde6efcb)}
+ .floating-top{right:14px;min-width:144px;min-height:47px;font-size:16px;border-radius:15px;padding:10px 14px 10px 18px}
+}
+@media(max-width:350px){.hero-process-scene .hero-intro-surface .hero-copy{padding:335px 21px 29px}.hero-process-scene .hero-copy h2{font-size:50px}.hero-process-scene .hero-intro{font-size:17px}.hero-follow-up.hero-quote-surface{padding:315px 14px 17px}.hero-follow-up.hero-quote-surface .hero-portrait{height:490px}.floating-top{right:12px;min-width:135px}}
+@media(prefers-reduced-motion:reduce){.floating-top{transition:none}.floating-top svg{animation:none!important}}
+
+@media(max-width:800px){body:has(.floating-top:not([hidden])) .welcome-reminder{bottom:calc(var(--mobile-nav-space) + 80px)}}
+
+@media(min-width:801px){.hero-intro-surface .hero-process-photo .hero-photo-desktop{position:absolute;inset:0 0 0 auto;width:auto;max-width:58%;height:100%;aspect-ratio:1181/2100;mask-image:linear-gradient(90deg,transparent,#000 27%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 27%)}}
