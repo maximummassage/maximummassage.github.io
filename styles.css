@@ -866,3 +866,6 @@ summary{min-height:48px;border-radius:10px;background:linear-gradient(120deg,#ff
 .status-author-mark{flex-shrink:0}
 
 @media(max-width:800px){.status-signature{gap:10px;align-items:flex-start}.status-signature .status-author-mark{width:32px;height:36px;border-radius:11px;font-size:21px}.status-signature .status-author-role{margin-left:0}}
+
+@media(max-width:800px){.status-signature{display:grid;grid-template-columns:34px minmax(0,1fr);align-items:center;gap:7px 12px}.status-signature>div{display:contents}.status-signature .status-author-mark{grid-column:1;grid-row:1}.status-signature .status-author-name{display:block;grid-column:2;grid-row:1}.status-signature .status-author-role{display:block;grid-column:1/-1;margin:0;font-size:24px;line-height:1.4}}
+@media(max-width:350px){.status-signature .status-author-role{font-size:23px}}
